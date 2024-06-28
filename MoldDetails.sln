@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoldDetails", "MoldDetails\MoldDetails.csproj", "{A52CF826-C29C-415A-85AE-D993C27146C0}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MoldDetailsSetup", "Setup\Setup.vdproj", "{BA42DEA2-0622-49B7-81D7-2627AE1CFAD2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib", "MyLib\MyLib.csproj", "{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}"
 EndProject
 Global
