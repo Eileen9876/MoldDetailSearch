@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoldDetails", "MoldDetails\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib", "MyLib\MyLib.csproj", "{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MoldDetailSearchSetup", "MoldDetailSearchSetup\MoldDetailSearchSetup.vdproj", "{43D76686-B3EC-4730-AD91-EB26A830201D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,12 @@ Global
 		{A52CF826-C29C-415A-85AE-D993C27146C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A52CF826-C29C-415A-85AE-D993C27146C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A52CF826-C29C-415A-85AE-D993C27146C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA42DEA2-0622-49B7-81D7-2627AE1CFAD2}.Debug|Any CPU.ActiveCfg = Debug
-		{BA42DEA2-0622-49B7-81D7-2627AE1CFAD2}.Release|Any CPU.ActiveCfg = Release
 		{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7E3FB3-B797-4FF8-A3CE-DD13E72F6C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D76686-B3EC-4730-AD91-EB26A830201D}.Debug|Any CPU.ActiveCfg = Debug
+		{43D76686-B3EC-4730-AD91-EB26A830201D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

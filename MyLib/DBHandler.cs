@@ -2,6 +2,8 @@
 using System.Data;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Linq;
 
 namespace MyLib
 {
@@ -36,20 +38,16 @@ namespace MyLib
         }
 
         private OleDbCommand Create_SelectCommand(string table_name, string[] col, string condition = "")
-        {   
+        {
             // SELECT column1, column2, ...
             // FROM table_name
             // WHERE condition;
 
-            string query = "SELECT " + col[0];
-            for (int i = 1; i < col.Length; i++) query += ", " + col[i];
+            StringBuilder query = new StringBuilder($"SELECT {string.Join(",", col)} FROM {table_name}");
 
-            query += " FROM " + table_name;
+            query.Append((condition == "") ? ";" : $" WHERE {condition};");
 
-            if (condition == "") query += ";";
-            else query += " WHERE " + condition + ";";
-
-            return new OleDbCommand(query, this.sqlConn);
+            return new OleDbCommand(query.ToString(), this.sqlConn);
         }
 
         private OleDbCommand Create_InsertCommand(string table_name, string[] col, string[] val, Parameter param = null)
@@ -57,24 +55,26 @@ namespace MyLib
             // INSERT INTO table_name (column1, column2, column3, ... , param_column1, param_column2)
             // VALUES (value1, value2, value3, ... , @param_column1, @param_column2);
 
-            string query = "INSERT INTO " + table_name;
+            StringBuilder query = new StringBuilder($"INSERT INTO {table_name} (");
 
-            query += " (" + col[0];
-            for (int i = 1; i < col.Length; i++) query += ", " + col[i];
-            if (param != null) foreach (string param_col in param.col) query += ", " + param_col;
-            query += ")";
+            query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col));
 
-            query += " VALUES ('" + val[0] + "'";
-            for (int i = 1; i < val.Length; i++) query += ", '" + val[i] + "'";
-            if (param != null) foreach(string param_col in param.col) query += ", @" + param_col;
-            query += ");";
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col));
 
-            return new OleDbCommand(query, this.sqlConn);
+            query.Append(") VALUES (");
+
+            query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", val.Select(v => $"'{v}'")));
+
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col.Select(c => $"@{c}")));
+
+            query.Append(");");
+
+            return new OleDbCommand(query.ToString(), this.sqlConn);
         }
 
         private OleDbCommand Create_DeleteCommand(string table_name, string condition)
         {
-            string query = "DELETE FROM " + table_name + " WHERE " + condition + ";";
+            string query = $"DELETE FROM {table_name} WHERE {condition};";
             return new OleDbCommand(query, this.sqlConn);
         }
 
@@ -84,15 +84,15 @@ namespace MyLib
             // SET column1 = value1, column2 = value2, ..., param_column1 = @param_column1, param_column2 = @param_column1
             // WHERE condition;
 
-            string query = "UPDATE " + table_name + " SET " + col[0] + " = '" + val[0] + "'";
-            
-            for(int i = 1; i < col.Length;i++) query += ", " + col[i] + " = '" + val[i] + "'";
+            StringBuilder query = new StringBuilder($"UPDATE {table_name} SET ");
 
-            if (param != null) foreach (string param_col in param.col) query += ", " + param_col + " = @" + param_col;
+            query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col.Zip(val, (c, v) => $"{c} = '{v}'")));
 
-            query += " WHERE " + condition;
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col.Select(c => $"{c} = @{c}")));
 
-            return new OleDbCommand(query, this.sqlConn);
+            query.Append($" WHERE {condition};");
+
+            return new OleDbCommand(query.ToString(), this.sqlConn);
         }
 
         private void Execute(OleDbCommand cmd)
