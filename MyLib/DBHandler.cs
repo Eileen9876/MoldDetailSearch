@@ -65,7 +65,7 @@ namespace MyLib
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", val.Select(v => $"'{v}'")));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns.Select(c => $"@{c}")));
+            query.Append((param == null) ? "" : ((col == null || col.Length == 0) ? "" : ", ") + string.Join(", ", param.Columns.Select(c => $"@{c}")));
 
             query.Append(");");
 
@@ -88,7 +88,7 @@ namespace MyLib
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col.Zip(val, (c, v) => $"{c} = '{v}'")));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns.Select(c => $"{c} = @{c}")));
+            query.Append((param == null) ? "" : ((col == null || col.Length == 0) ? "" : ", ") + string.Join(", ", param.Columns.Select(c => $"{c} = @{c}")));
 
             query.Append($" WHERE {condition};");
 
