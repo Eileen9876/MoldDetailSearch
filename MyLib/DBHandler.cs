@@ -9,10 +9,10 @@ namespace MyLib
 {
     public class Parameter
     {
-        public OleDbType type = OleDbType.Empty;
-        public int count = 0;
-        public List<string> col = new List<string>(); 
-        public List<object> val = new List<object>();
+        public OleDbType Type = OleDbType.Empty;
+        public int Count = 0;
+        public List<string> Columns = new List<string>(); 
+        public List<object> Values = new List<object>();
     }
 
     public class DBHandler
@@ -59,13 +59,13 @@ namespace MyLib
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col));
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns));
 
             query.Append(") VALUES (");
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", val.Select(v => $"'{v}'")));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col.Select(c => $"@{c}")));
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns.Select(c => $"@{c}")));
 
             query.Append(");");
 
@@ -88,7 +88,7 @@ namespace MyLib
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col.Zip(val, (c, v) => $"{c} = '{v}'")));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.col.Select(c => $"{c} = @{c}")));
+            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns.Select(c => $"{c} = @{c}")));
 
             query.Append($" WHERE {condition};");
 
@@ -108,8 +108,8 @@ namespace MyLib
 
         private void Proc_Parameter(OleDbCommand cmd, Parameter param)
         {
-            for (int i = 0; i < param.count; i++)
-                cmd.Parameters.Add(param.col[i], param.type).Value = param.val[i];
+            for (int i = 0; i < param.Count; i++)
+                cmd.Parameters.Add(param.Columns[i], param.Type).Value = param.Values[i];
         }
 
         public DataTable Select(string table_name, string[] col, string condition = "")
