@@ -54,17 +54,17 @@ namespace MoldDetails
         public void AddData(string[] col, string[] val, List<byte[]> img_list)
         {
             Parameter param = new Parameter();
-            param.type = System.Data.OleDb.OleDbType.Binary;
+            param.Type = System.Data.OleDb.OleDbType.Binary;
 
             for (int i = 0; i < img_list.Count; i++) 
             {
                 if (img_list[i] == null) continue;
-                param.count++;
-                param.col.Add("img" + (i+1).ToString());
-                param.val.Add(img_list[i]);
+                param.Count++;
+                param.Columns.Add("img" + (i+1).ToString());
+                param.Values.Add(img_list[i]);
             }
 
-            if (param.count == 0) Handler.Insert(Table, col, val);
+            if (param.Count == 0) Handler.Insert(Table, col, val);
             else Handler.Insert(Table, col, val, param);
         }
 
@@ -73,17 +73,17 @@ namespace MoldDetails
             string condition = Primary_Column + "= '" + primary_key_val + "'";
 
             Parameter param = new Parameter();
-            param.type = System.Data.OleDb.OleDbType.Binary;
+            param.Type = System.Data.OleDb.OleDbType.Binary;
 
             for (int i = 0; i < img_list.Count; i++)
             {
                 if (img_list[i] == null) continue;
-                param.count++;
-                param.col.Add("img" + (i + 1).ToString());
-                param.val.Add(img_list[i]);
+                param.Count++;
+                param.Columns.Add("img" + (i + 1).ToString());
+                param.Values.Add(img_list[i]);
             }
 
-            if (param.count == 0) Handler.Update(Table, col, val, condition);
+            if (param.Count == 0) Handler.Update(Table, col, val, condition);
             else Handler.Update(Table, col, val, condition, param);
         }
 
