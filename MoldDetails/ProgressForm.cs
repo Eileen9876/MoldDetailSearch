@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
 
 namespace MoldDetails
 {
@@ -49,39 +51,60 @@ namespace MoldDetails
 
         public void Run(TaskAction action)
         {
-            try
+            Exception exception = null;
+            CancellationTokenSource cts = new CancellationTokenSource();
+
+            Task task = Task.Run(() =>
             {
-                Task task = new Task(() => 
-                { 
+                try
+                {
                     action();
+                }
+                catch (Exception ex) 
+                {
+                    exception = ex; //record to throw exception outside the task
+                    cts.Cancel(); //current task cancel
+                }
+                finally
+                {
+                    Close(); //form close
+                }
+            },
+            cts.Token);
 
-                    Close();
-                });
+            Form.Record_Progress("");
 
-                task.Start();
+            Form.ShowDialog(this.Control);
 
-                Form.Record_Progress("");
+            task.Wait();
 
-                Form.ShowDialog(this.Control);
-
-                task.Wait();
-            }
-            catch
-            {
-                throw;
-            }
+            if (exception != null) throw exception;
         }
 
         public void Close()
         {
-            FormClose close = new FormClose(this.Form.Close);
-            this.Control.Invoke(close);
+            if (this.Form.InvokeRequired)
+            {
+                FormClose close = new FormClose(this.Form.Close);
+                this.Control.Invoke(close);
+            }
+            else
+            {
+                this.Form.Close();
+            }
         }
 
         public void SetMsg(string msg)
         {
-            FormSetMsg set_msg = new FormSetMsg(this.Form.Record_Progress);
-            this.Control.Invoke(set_msg, msg);
+            if (this.Form.InvokeRequired)
+            {
+                FormSetMsg set_msg = new FormSetMsg(this.Form.Record_Progress);
+                this.Control.Invoke(set_msg, msg);
+            }
+            else
+            {
+                this.Form.Record_Progress(msg);
+            }
         }
 
         public bool MsgBoxShow(string msg, MessageBoxButtons btn = MessageBoxButtons.OK,  MessageBoxIcon icon = MessageBoxIcon.None)
