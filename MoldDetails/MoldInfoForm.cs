@@ -10,8 +10,6 @@ namespace MoldDetails
 
         private readonly PictureBox[] PictureBoxes;
 
-        private ProgressTrack Track;
-
         private DB_Operator DB_OP;
 
         public MoldInfoForm(DB_Operator DB_OP)
@@ -33,8 +31,6 @@ namespace MoldDetails
             };
 
             PictureBoxes = new PictureBox[] { img1_pictureBox, img2_pictureBox };
-            
-            Track = new ProgressTrack(this);
 
             this.DB_OP = DB_OP;
         }
@@ -47,47 +43,28 @@ namespace MoldDetails
                 return;
             }
 
-
-            Track.Run(() =>
+            ProgressTrack track = ProgressTrack.Run(this, () =>
             {
                 // 資料已存在，更新資料
                 if (DB_OP.CheckDataExist(itemId_textBox.Text))
                 {
                     if (!MsgBox.Show(this, "該筆資料已存在，要進行更新嗎？", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
 
-                    try
-                    {
-                        DB_OP.UpdateData(itemId_textBox.Text,
-                                        MainForm.Get_ColName(TextBoxes),
-                                MainForm.Get_TextBoxValue(TextBoxes),
-                                MainForm.Get_ImageBinaryValue(PictureBoxes));
-
-                        MsgBox.Show(this, "資料更新成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        MsgBox.ShowErr(this, "資料更新失敗", ex);
-                        MainForm.Log_Error(ex);
-                    }
+                    DB_OP.UpdateData(itemId_textBox.Text,
+                                    MainForm.Get_ColName(TextBoxes),
+                                    MainForm.Get_TextBoxValue(TextBoxes),
+                                    MainForm.Get_ImageBinaryValue(PictureBoxes));
 
                     return;
                 }
 
                 // 新增資料
-                try
-                {
-                    DB_OP.AddData(MainForm.Get_ColName(TextBoxes),
-                                MainForm.Get_TextBoxValue(TextBoxes),
-                                MainForm.Get_ImageBinaryValue(PictureBoxes));
-
-                    MsgBox.Show(this, "資料新增成功");
-                }
-                catch (Exception ex)
-                {
-                    MsgBox.ShowErr(this, "資料新增失敗", ex);
-                    MainForm.Log_Error(ex);
-                }
+                DB_OP.AddData(MainForm.Get_ColName(TextBoxes),
+                              MainForm.Get_TextBoxValue(TextBoxes),
+                              MainForm.Get_ImageBinaryValue(PictureBoxes));
             });
+
+            ResultMsgShow_And_ErrLog("執行成功", "執行失敗", track.GetException);
         }
 
         private void clear_button_Click(object sender, EventArgs e)
@@ -131,6 +108,15 @@ namespace MoldDetails
         {
             img2_pictureBox.Image = null;
         }
-    }
 
+        private void ResultMsgShow_And_ErrLog(string success_msg, string error_msg, Exception ex)
+        {
+            if (ex == null && success_msg.Length > 0) MsgBox.Show(this, success_msg);
+            else
+            {
+                MainForm.Log_Error(ex);
+                MsgBox.ShowErr(this, error_msg, ex);
+            }
+        }
+    }
 }
