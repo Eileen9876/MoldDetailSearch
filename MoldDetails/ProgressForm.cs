@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
-using System.Data;
 
 namespace MoldDetails
 {
@@ -90,7 +89,7 @@ namespace MoldDetails
 
         public void Close()
         {
-            if (this.Form.InvokeRequired)
+            if (this.Control.InvokeRequired)
             {
                 FormClose close = new FormClose(this.Form.Close);
 
@@ -104,7 +103,7 @@ namespace MoldDetails
 
         public void SetMsg(string msg)
         {
-            if (this.Form.InvokeRequired)
+            if (this.Control.InvokeRequired)
             {
                 FormSetMsg set_msg = new FormSetMsg(this.Form.Record_Progress);
 
