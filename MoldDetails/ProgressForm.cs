@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
+using System.Data;
 
 namespace MoldDetails
 {
@@ -34,6 +35,8 @@ namespace MoldDetails
 
         private ProgressForm Form;
 
+        public Exception GetException { get; private set; }
+
         public ProgressTrack(Control control)
         {
             this.Control = control;
@@ -47,9 +50,17 @@ namespace MoldDetails
             this.Form = null; 
         }
 
+        public static ProgressTrack Run(Control control, TaskAction action)
+        {
+            ProgressTrack track = new ProgressTrack(control);
+
+            track.Run(action);
+
+            return track;
+        }
+
         public void Run(TaskAction action)
         {
-            Exception exception = null;
             CancellationTokenSource cts = new CancellationTokenSource();
 
             Task task = Task.Run(() =>
@@ -60,7 +71,7 @@ namespace MoldDetails
                 }
                 catch (Exception ex) 
                 {
-                    exception = ex; //record to throw exception outside the task
+                    GetException = ex;
                     cts.Cancel(); //current task cancel
                 }
                 finally
@@ -75,8 +86,6 @@ namespace MoldDetails
             Form.ShowDialog(this.Control);
 
             task.Wait();
-
-            if (exception != null) throw exception;
         }
 
         public void Close()
