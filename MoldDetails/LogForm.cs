@@ -13,6 +13,8 @@ namespace MoldDetails
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterParent;
+
+            textBox.WordWrap = false;
         }
 
         private void LogForm_Load(object sender, EventArgs e)
