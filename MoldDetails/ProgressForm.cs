@@ -86,12 +86,13 @@ namespace MoldDetails
             if (this.Form.InvokeRequired)
             {
                 FormClose close = new FormClose(this.Form.Close);
+
                 this.Control.Invoke(close);
+
+                return;
             }
-            else
-            {
-                this.Form.Close();
-            }
+
+            this.Form.Close();
         }
 
         public void SetMsg(string msg)
@@ -99,22 +100,13 @@ namespace MoldDetails
             if (this.Form.InvokeRequired)
             {
                 FormSetMsg set_msg = new FormSetMsg(this.Form.Record_Progress);
+
                 this.Control.Invoke(set_msg, msg);
-            }
-            else
-            {
-                this.Form.Record_Progress(msg);
-            }
-        }
 
-        public bool MsgBoxShow(string msg, MessageBoxButtons btn = MessageBoxButtons.OK,  MessageBoxIcon icon = MessageBoxIcon.None)
-        {
-            BoxShow box_show = new BoxShow((control) =>
-            {
-                return MsgBox.Show(control, msg, btn, icon);
-            });
+                return;
+            }
 
-            return (bool)this.Control.Invoke(box_show, this.Form);
+            this.Form.Record_Progress(msg);
         }
     }
 }

@@ -212,7 +212,7 @@ namespace MoldDetails
             {
                 Log_Error(ex);
 
-                MsgBox.Show(this, "資料更新失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "資料更新失敗", ex);
             }
         }
 
@@ -224,38 +224,48 @@ namespace MoldDetails
                 return;
             }
 
-            Track.Run(() =>
+            try
             {
-                foreach (RadioButton btn in RadioButtons)
+                Track.Run(() =>
                 {
-                    if (!btn.Checked) continue;
-
-                    Track.SetMsg("查詢中");
-                    DataTable table = DB_OP.SearchData(btn.Name.Split('_')[0], search_textBox.Text);
-                    if (table.Rows.Count == 0)
+                    foreach (RadioButton btn in RadioButtons)
                     {
-                        Track.MsgBoxShow("查無該筆資料");
+                        if (!btn.Checked) continue;
+
+                        Track.SetMsg("查詢中");
+                        DataTable table = DB_OP.SearchData(btn.Name.Split('_')[0], search_textBox.Text);
+                        if (table.Rows.Count == 0)
+                        {
+                            MsgBox.Show(this, "查無該筆資料");
+                            return;
+                        }
+
+                        // 假如查詢條件為「貨品編號」則顯示於上方 Textbox，否則顯示於下方的 DataGridView。
+                        Track.SetMsg("查詢完畢，將資料顯示於頁面中");
+                        if (btn.Name == DB_OP.Primary_Column + "_radioBtn")
+                        {
+                            ListRow list_row = new ListRow(List_In_Textbox);
+                            this.Invoke(list_row, table.Rows[0]);
+                        }
+                        else
+                        {
+                            ViewInfo.Table = table.Copy();
+
+                            ListTable list_table = new ListTable(List_In_DataGridView);
+                            this.Invoke(list_table, table);
+                        }
+
                         return;
                     }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log_Error(ex);
 
-                    // 假如查詢條件為「貨品編號」則顯示於上方 Textbox，否則顯示於下方的 DataGridView。
-                    Track.SetMsg("查詢完畢，將資料顯示於頁面中");
-                    if (btn.Name == DB_OP.Primary_Column + "_radioBtn")
-                    {
-                        ListRow list_row = new ListRow(List_In_Textbox);
-                        this.Invoke(list_row, table.Rows[0]);
-                    }
-                    else
-                    {
-                        ViewInfo.Table = table.Copy();
-
-                        ListTable list_table = new ListTable(List_In_DataGridView);
-                        this.Invoke(list_table, table);
-                    }
-
-                    return;
-                }
-            });
+                MsgBox.ShowErr(this, "資料查詢失敗", ex);
+            }
+            
         }
 
         private void delete_button_Click(object sender, EventArgs e)
@@ -284,7 +294,7 @@ namespace MoldDetails
             {
                 Log_Error(ex);
 
-                MsgBox.Show(this, "資料刪除失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "資料刪除失敗", ex);
             }
         }
 
@@ -305,7 +315,7 @@ namespace MoldDetails
                     DataTable table = DB_OP.GetAllData();
                     if (table.Rows.Count == 0)
                     {
-                        Track.MsgBoxShow("無資料");
+                        MsgBox.Show(this, "無資料");
                         return;
                     }
 
@@ -315,14 +325,14 @@ namespace MoldDetails
                     Track.SetMsg("寫入檔案");
                     Write_In_Excel(table.Copy(), DB_OP.Columns, target_file);
 
-                    Track.MsgBoxShow("檔案匯出成功，檔名為【" + file_name + "】");
+                    MsgBox.Show(this, "檔案匯出成功，檔名為【" + file_name + "】");
                 });
             }
             catch (Exception ex)
             {
                 Log_Error(ex);
 
-                MsgBox.Show(this, "檔案匯出失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "檔案匯出失敗", ex);
             }
         }
 
@@ -351,14 +361,14 @@ namespace MoldDetails
                     Track.SetMsg("寫入檔案");
                     Write_In_Excel(ViewInfo.Table.Copy(), DB_OP.Columns, target_file);
 
-                    Track.MsgBoxShow("檔案匯出成功，檔名為【" + file_name + "】");
+                    MsgBox.Show(this, "檔案匯出成功，檔名為【" + file_name + "】");
                 });
             }
             catch (Exception ex)
             {
                 Log_Error(ex);
 
-                MsgBox.Show(this, "檔案匯出失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "檔案匯出失敗", ex);
             }
         }
 
@@ -385,7 +395,7 @@ namespace MoldDetails
 
                 DB_OP.ConnectDB(current_filepath);
 
-                MsgBox.Show(this, "資料庫更換失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "資料庫更換失敗", ex);
             }
             finally 
             { 
@@ -404,7 +414,7 @@ namespace MoldDetails
             {
                 Log_Error(ex);
 
-                MsgBox.Show(this, "開啟失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowErr(this, "開啟失敗", ex);
             }
             finally 
             { 
@@ -510,9 +520,9 @@ namespace MoldDetails
                 }
 
                 // 移除不用顯示的資訊
-                if (ViewInfo.HeaderEnglish[i].Value == null) 
+                if (ViewInfo.HeaderEnglish[i].Value == null)
                     table.Columns.Remove(ViewInfo.HeaderEnglish[i].Key);
-                else 
+                else
                     foreach (string name in ViewInfo.HeaderEnglish[i].Value) table.Columns.Remove(name);
             }
 

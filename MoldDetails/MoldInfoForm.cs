@@ -47,53 +47,47 @@ namespace MoldDetails
                 return;
             }
 
-            try
+
+            Track.Run(() =>
             {
-                Track.Run(() =>
+                // 資料已存在，更新資料
+                if (DB_OP.CheckDataExist(itemId_textBox.Text))
                 {
-                    if (DB_OP.CheckDataExist(itemId_textBox.Text))
-                    {
-                        if (!Track.MsgBoxShow("該筆資料已存在，要進行更新嗎？", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
-
-                        try
-                        {
-                            DB_OP.UpdateData(itemId_textBox.Text,
-                                         MainForm.Get_ColName(TextBoxes),
-                                   MainForm.Get_TextBoxValue(TextBoxes),
-                                   MainForm.Get_ImageBinaryValue(PictureBoxes));
-
-                            Track.MsgBoxShow("資料更新成功");
-                        }
-                        catch
-                        {
-                            Track.MsgBoxShow("資料更新失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            throw;
-                        }
-
-                        return;
-                    }
+                    if (!MsgBox.Show(this, "該筆資料已存在，要進行更新嗎？", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
 
                     try
                     {
-                        DB_OP.AddData(MainForm.Get_ColName(TextBoxes),
-                                  MainForm.Get_TextBoxValue(TextBoxes),
-                                  MainForm.Get_ImageBinaryValue(PictureBoxes));
+                        DB_OP.UpdateData(itemId_textBox.Text,
+                                        MainForm.Get_ColName(TextBoxes),
+                                MainForm.Get_TextBoxValue(TextBoxes),
+                                MainForm.Get_ImageBinaryValue(PictureBoxes));
 
-                        Track.MsgBoxShow("資料新增成功");
+                        MsgBox.Show(this, "資料更新成功");
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        Track.MsgBoxShow("資料新增失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        throw;
+                        MsgBox.ShowErr(this, "資料更新失敗", ex);
+                        MainForm.Log_Error(ex);
                     }
 
-                });
-            }
-            catch (Exception ex)
-            {
-                MainForm.Log_Error(ex);
-            }
+                    return;
+                }
 
+                // 新增資料
+                try
+                {
+                    DB_OP.AddData(MainForm.Get_ColName(TextBoxes),
+                                MainForm.Get_TextBoxValue(TextBoxes),
+                                MainForm.Get_ImageBinaryValue(PictureBoxes));
+
+                    MsgBox.Show(this, "資料新增成功");
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.ShowErr(this, "資料新增失敗", ex);
+                    MainForm.Log_Error(ex);
+                }
+            });
         }
 
         private void clear_button_Click(object sender, EventArgs e)

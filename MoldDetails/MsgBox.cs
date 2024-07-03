@@ -6,13 +6,47 @@ namespace MoldDetails
 {
     public partial class MsgBox : Form
     {
-        public static bool Show(IWin32Window window, string msg, MessageBoxButtons btn = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None)
+        private delegate void DelShowErr(Control control, string msg, Exception ex);
+
+        private delegate bool DelShow(Control control, string msg, MessageBoxButtons btn = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None);
+
+
+        public static void ShowErr(Control control, string msg, Exception ex)
         {
+            if (control.InvokeRequired)
+            {
+                DelShowErr fun = new DelShowErr(ShowErr);
+
+                control.Invoke(fun, control, msg, ex);
+
+                return;
+            }
+
+            MsgBox box = new MsgBox();
+
+            msg = $"{msg}\r\n\r\n錯誤訊息：{ex.Message}";
+
+            box.Initial(msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            box.ShowDialog(control);
+
+            box.Dispose();
+        }
+
+        public static bool Show(Control control, string msg, MessageBoxButtons btn = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None)
+        {
+            if (control.InvokeRequired)
+            {
+                DelShow fun = new DelShow(Show);
+
+                return (bool)control.Invoke(fun, control, msg, btn, icon);
+            }
+
             MsgBox box = new MsgBox();
 
             box.Initial(msg, btn, icon);
 
-            box.ShowDialog(window);
+            box.ShowDialog(control);
 
             bool result = (box.DialogResult == DialogResult.OK);
 
@@ -83,11 +117,11 @@ namespace MoldDetails
         {
             label.Text = msg;
 
-            int width = label.Width + 50;
+            int width = label.Width + 50 + ((pictureBox.Image != null) ? pictureBox.Width + 10 : 0);
 
-            if (pictureBox.Image != null) width += pictureBox.Width + 10;
+            int height = label.Height + 180;
 
-            if (this.Width < width) this.Size = new Size(width, 180);
+            this.Size = new Size((this.Width < width) ? width : this.Width, height);
         }
 
         private void Use_OkBtn()

@@ -48,7 +48,7 @@
             // 
             this.ok_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ok_button.Enabled = false;
-            this.ok_button.Location = new System.Drawing.Point(242, 83);
+            this.ok_button.Location = new System.Drawing.Point(271, 83);
             this.ok_button.Name = "ok_button";
             this.ok_button.Size = new System.Drawing.Size(109, 36);
             this.ok_button.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancel_button.Enabled = false;
-            this.cancel_button.Location = new System.Drawing.Point(127, 83);
+            this.cancel_button.Location = new System.Drawing.Point(156, 83);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(109, 36);
             this.cancel_button.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 131);
+            this.ClientSize = new System.Drawing.Size(393, 131);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.cancel_button);
