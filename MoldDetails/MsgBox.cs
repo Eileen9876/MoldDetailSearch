@@ -10,7 +10,6 @@ namespace MoldDetails
 
         private delegate bool DelShow(Control control, string msg, MessageBoxButtons btn = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None);
 
-
         public static void ShowErr(Control control, string msg, Exception ex)
         {
             if (control.InvokeRequired)

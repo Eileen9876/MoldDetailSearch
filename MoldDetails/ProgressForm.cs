@@ -28,8 +28,6 @@ namespace MoldDetails
 
         private delegate void FormSetMsg(string msg);
 
-        private delegate bool BoxShow(Control control);
-
         public delegate void TaskAction();
 
         private Control Control;
