@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using MyLib;
 using System.Collections.Generic;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace MoldDetails
 {
@@ -594,10 +593,16 @@ namespace MoldDetails
             finally
             {
                 ws = null;
-                wb.Close();
-                wb = null;
-                app.Quit();
-                app = null;
+                if (wb != null)
+                {
+                    wb.Close();
+                    wb = null;
+                }
+                if(app != null)
+                {
+                    app.Quit();
+                    app = null;
+                }
             }
         }
 
