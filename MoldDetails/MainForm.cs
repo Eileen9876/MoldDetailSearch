@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using MyLib;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace MoldDetails
 {
@@ -30,11 +31,9 @@ namespace MoldDetails
 
         private DataGridViewInfo ViewInfo; 
 
-        private ProgressTrack Track; //進度條顯示
+        private delegate Exception ListRow(DataRow row); // 多執行緒使用
 
-        private delegate void ListRow(DataRow row); // 多執行緒使用
-
-        private delegate void ListTable(DataTable table); // 多執行緒使用
+        private delegate Exception ListTable(DataTable table); // 多執行緒使用
 
         public MainForm()
         {
@@ -89,8 +88,6 @@ namespace MoldDetails
             };
 
             PictureBoxes = new PictureBox[] { img1_pictureBox, img2_pictureBox };
-
-            Track = new ProgressTrack(this);
 
             itemId_textBox.Enabled = false;
 
@@ -196,24 +193,15 @@ namespace MoldDetails
         {
             if (!MsgBox.Show(this, "確認更新該筆資料?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
 
-            try
+            ProgressTrack track = ProgressTrack.Run(this, () =>
             {
-                Track.Run(() =>
-                {
-                    DB_OP.UpdateData(itemId_textBox.Text, 
-                                     Get_ColName(TextBoxes), 
-                                     Get_TextBoxValue(TextBoxes),
-                                     Get_ImageBinaryValue(PictureBoxes));
-                });
+                DB_OP.UpdateData(itemId_textBox.Text, 
+                                Get_ColName(TextBoxes), 
+                                Get_TextBoxValue(TextBoxes),
+                                Get_ImageBinaryValue(PictureBoxes));
+            });
 
-                MsgBox.Show(this, "資料更新成功");
-            }
-            catch (Exception ex)
-            {
-                Log_Error(ex);
-
-                MsgBox.ShowErr(this, "資料更新失敗", ex);
-            }
+            ResultMsgShow_And_ErrLog("資料更新成功", "資料更新失敗", track.GetException);
         }
 
         private void search_button_Click(object sender, EventArgs e)
@@ -224,48 +212,43 @@ namespace MoldDetails
                 return;
             }
 
-            try
+            ProgressTrack track = new ProgressTrack(this);
+
+            track.Run(() =>
             {
-                Track.Run(() =>
+                foreach (RadioButton btn in RadioButtons)
                 {
-                    foreach (RadioButton btn in RadioButtons)
+                    if (!btn.Checked) continue;
+
+                    track.SetMsg("查詢中");
+                    DataTable table = DB_OP.SearchData(btn.Name.Split('_')[0], search_textBox.Text);
+                    if (table.Rows.Count == 0)
                     {
-                        if (!btn.Checked) continue;
-
-                        Track.SetMsg("查詢中");
-                        DataTable table = DB_OP.SearchData(btn.Name.Split('_')[0], search_textBox.Text);
-                        if (table.Rows.Count == 0)
-                        {
-                            MsgBox.Show(this, "查無該筆資料");
-                            return;
-                        }
-
-                        // 假如查詢條件為「貨品編號」則顯示於上方 Textbox，否則顯示於下方的 DataGridView。
-                        Track.SetMsg("查詢完畢，將資料顯示於頁面中");
-                        if (btn.Name == DB_OP.Primary_Column + "_radioBtn")
-                        {
-                            ListRow list_row = new ListRow(List_In_Textbox);
-                            this.Invoke(list_row, table.Rows[0]);
-                        }
-                        else
-                        {
-                            ViewInfo.Table = table.Copy();
-
-                            ListTable list_table = new ListTable(List_In_DataGridView);
-                            this.Invoke(list_table, table);
-                        }
-
+                        MsgBox.Show(this, "查無該筆資料");
                         return;
                     }
-                });
-            }
-            catch (Exception ex)
-            {
-                Log_Error(ex);
 
-                MsgBox.ShowErr(this, "資料查詢失敗", ex);
-            }
-            
+                    // 假如查詢條件為「貨品編號」則顯示於上方 Textbox，否則顯示於下方的 DataGridView。
+                    track.SetMsg("查詢完畢，將資料顯示於頁面中");
+                    Exception ex;
+                    if (btn.Name == DB_OP.Primary_Column + "_radioBtn")
+                    {
+                        ex = Invoke_ListInTextbox(table.Rows[0]);
+                    }
+                    else
+                    {
+                        ViewInfo.Table = table.Copy();
+
+                        ex = Invoke_ListInView(table);
+                    }
+
+                    if (ex != null) throw ex;
+
+                    return;
+                }
+            });
+
+            ResultMsgShow_And_ErrLog("", "資料查詢失敗", track.GetException);
         }
 
         private void delete_button_Click(object sender, EventArgs e)
@@ -278,24 +261,12 @@ namespace MoldDetails
 
             if (!MsgBox.Show(this, "確認刪除該筆資料?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
 
-            string value = itemId_textBox.Text;
-
-            try
+            ProgressTrack track = ProgressTrack.Run(this, () =>
             {
-                Track.Run(() =>
-                {
-                    Track.SetMsg("資料刪除中");
-                    DB_OP.DeleteData(value);
-                });
+                DB_OP.DeleteData(itemId_textBox.Text);
+            });
 
-                MsgBox.Show(this, "資料刪除成功");
-            }
-            catch (Exception ex)
-            {
-                Log_Error(ex);
-
-                MsgBox.ShowErr(this, "資料刪除失敗", ex);
-            }
+            ResultMsgShow_And_ErrLog("資料刪除成功", "資料刪除失敗", track.GetException);
         }
 
         private void export_all_button_Click(object sender, EventArgs e)
@@ -307,33 +278,26 @@ namespace MoldDetails
 
             string target_file = file_path + file_name;
 
-            try 
+            ProgressTrack track = new ProgressTrack(this);
+
+            track.Run(() =>
             {
-                Track.Run(() =>
+                track.SetMsg("獲取資料");
+                DataTable table = DB_OP.GetAllData();
+                if (table.Rows.Count == 0)
                 {
-                    Track.SetMsg("獲取資料");
-                    DataTable table = DB_OP.GetAllData();
-                    if (table.Rows.Count == 0)
-                    {
-                        MsgBox.Show(this, "無資料");
-                        return;
-                    }
+                    MsgBox.Show(this, "無資料");
+                    return;
+                }
 
-                    Track.SetMsg("範本檔複製");
-                    File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
+                track.SetMsg("範本檔複製");
+                File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
 
-                    Track.SetMsg("寫入檔案");
-                    Write_In_Excel(table.Copy(), DB_OP.Columns, target_file);
+                track.SetMsg("寫入檔案");
+                Write_In_Excel(table.Copy(), DB_OP.Columns, target_file);
+            });
 
-                    MsgBox.Show(this, "檔案匯出成功，檔名為【" + file_name + "】");
-                });
-            }
-            catch (Exception ex)
-            {
-                Log_Error(ex);
-
-                MsgBox.ShowErr(this, "檔案匯出失敗", ex);
-            }
+            ResultMsgShow_And_ErrLog("檔案匯出成功，檔名為【" + file_name + "】", "檔案匯出失敗", track.GetException);
         }
 
         private void export_DataGridView_button_Click(object sender, EventArgs e)
@@ -351,25 +315,18 @@ namespace MoldDetails
 
             string target_file = file_path + file_name;
 
-            try
+            ProgressTrack track = new ProgressTrack(this);
+
+            track.Run(() =>
             {
-                Track.Run(() =>
-                {
-                    Track.SetMsg("範本檔複製");
-                    File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
+                track.SetMsg("範本檔複製");
+                File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
 
-                    Track.SetMsg("寫入檔案");
-                    Write_In_Excel(ViewInfo.Table.Copy(), DB_OP.Columns, target_file);
+                track.SetMsg("寫入檔案");
+                Write_In_Excel(ViewInfo.Table.Copy(), DB_OP.Columns, target_file);
+            });
 
-                    MsgBox.Show(this, "檔案匯出成功，檔名為【" + file_name + "】");
-                });
-            }
-            catch (Exception ex)
-            {
-                Log_Error(ex);
-
-                MsgBox.ShowErr(this, "檔案匯出失敗", ex);
-            }
+            ResultMsgShow_And_ErrLog("檔案匯出成功，檔名為【" + file_name + "】", "檔案匯出失敗", track.GetException);
         }
 
         private void dbSetup_MenuItem_Click(object sender, EventArgs e)
@@ -467,6 +424,16 @@ namespace MoldDetails
             List_In_Textbox(ViewInfo.Table.Rows[row]);
         }
 
+        private void ResultMsgShow_And_ErrLog(string success_msg, string error_msg, Exception ex)
+        {
+            if (ex == null && success_msg.Length > 0) MsgBox.Show(this, success_msg);
+            else if (ex != null)
+            {
+                Log_Error(ex);
+                MsgBox.ShowErr(this, error_msg, ex);
+            }
+        }
+
         private void itemId_textBox_TextChanged(object sender, EventArgs e)
         {
             if (itemId_textBox.Text == "")
@@ -477,6 +444,28 @@ namespace MoldDetails
 
             Enable_Button(true);
         }
+
+        private Exception Invoke_ListInTextbox(DataRow row)
+        {
+            if (this.InvokeRequired)
+            {
+                ListRow fun = new ListRow(Invoke_ListInTextbox);
+
+                return (Exception)this.Invoke(fun, row);
+            }
+
+            try
+            {
+                List_In_Textbox(row);
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+
+            return null;
+        }
+
 
         private void List_In_Textbox(DataRow row)
         {
@@ -495,6 +484,27 @@ namespace MoldDetails
                 if (binary == null) continue;
                 box.Image = BinaryToImage(binary);
             }
+        }
+
+        private Exception Invoke_ListInView(DataTable table)
+        {
+            if (this.InvokeRequired)
+            {
+                ListTable fun = new ListTable(Invoke_ListInView);
+
+                return (Exception)this.Invoke(fun, table);
+            }
+
+            try
+            {
+                List_In_DataGridView(table);
+            }
+            catch (Exception ex) 
+            {
+                return ex;
+            }
+
+            return null;
         }
 
         private void List_In_DataGridView(DataTable table)
