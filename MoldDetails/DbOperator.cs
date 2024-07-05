@@ -63,7 +63,6 @@ namespace MoldDetails
 
             for (int i = 0; i < img_list.Count; i++)
             {
-                if (img_list[i] == null) continue;
                 param.Count++;
                 param.Columns.Add("img" + (i + 1).ToString());
                 param.Values.Add(img_list[i]);

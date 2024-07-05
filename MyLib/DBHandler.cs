@@ -109,7 +109,7 @@ namespace MyLib
         private void Proc_Parameter(OleDbCommand cmd, Parameter param)
         {
             for (int i = 0; i < param.Count; i++)
-                cmd.Parameters.Add(param.Columns[i], param.Type).Value = param.Values[i];
+                cmd.Parameters.Add(param.Columns[i], param.Type).Value = param.Values[i] ?? System.DBNull.Value;
         }
 
         public DataTable Select(string table_name, string[] col, string condition = "")
