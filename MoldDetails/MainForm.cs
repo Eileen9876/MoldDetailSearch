@@ -319,7 +319,7 @@ namespace MoldDetails
                 File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
 
                 track.SetMsg("寫入檔案");
-                Write_In_Excel(table.Copy(), DB_OP.Columns, target_file);
+                Write_In_Excel(table.Copy(), target_file);
             });
 
             ResultMsgShow_And_ErrLog("檔案匯出成功，檔名為【" + file_name + "】", "檔案匯出失敗", track.GetException);
@@ -348,7 +348,7 @@ namespace MoldDetails
                 File.Copy(EXCEL_SAMPLE_FILE_PATH, target_file);
 
                 track.SetMsg("寫入檔案");
-                Write_In_Excel(ViewInfo.Table.Copy(), DB_OP.Columns, target_file);
+                Write_In_Excel(ViewInfo.Table.Copy(), target_file);
             });
 
             ResultMsgShow_And_ErrLog("檔案匯出成功，檔名為【" + file_name + "】", "檔案匯出失敗", track.GetException);
@@ -587,7 +587,7 @@ namespace MoldDetails
             img2_clearBtn.Enabled = enable;
         }
 
-        private void Write_In_Excel(DataTable table,string[] table_columns, string fileName)
+        private void Write_In_Excel(DataTable table, string fileName)
         {
             Excel.Application app = new Excel.Application(); //應用程序
             Excel.Workbook wb = null; //檔案
