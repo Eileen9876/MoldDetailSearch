@@ -4,14 +4,6 @@ using MyLib;
 
 namespace MoldDetails
 {
-    public class DbData
-    {
-        public string PrimaryKeyVal { get; set; }
-        public string[] Columns { get; set; }
-        public string[] Values { get; set; }
-        public List<byte[]> ImageList { get; set; }
-    }
-
     public static class DbOperator
     {
         private static readonly string Table = "moldInfo";
