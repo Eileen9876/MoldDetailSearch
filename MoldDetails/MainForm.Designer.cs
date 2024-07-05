@@ -29,8 +29,8 @@ namespace MoldDetails
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.moldId_label = new System.Windows.Forms.Label();
             this.itemId_label = new System.Windows.Forms.Label();
             this.itemName_label = new System.Windows.Forms.Label();
@@ -377,7 +377,7 @@ namespace MoldDetails
             // 
             this.machine_label.AutoSize = true;
             this.machine_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.machine_label.Location = new System.Drawing.Point(750, 167);
+            this.machine_label.Location = new System.Drawing.Point(771, 167);
             this.machine_label.Name = "machine_label";
             this.machine_label.Size = new System.Drawing.Size(56, 23);
             this.machine_label.TabIndex = 22;
@@ -397,7 +397,7 @@ namespace MoldDetails
             // 
             this.toSprue_label.AutoSize = true;
             this.toSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toSprue_label.Location = new System.Drawing.Point(750, 343);
+            this.toSprue_label.Location = new System.Drawing.Point(771, 343);
             this.toSprue_label.Name = "toSprue_label";
             this.toSprue_label.Size = new System.Drawing.Size(79, 23);
             this.toSprue_label.TabIndex = 27;
@@ -407,7 +407,7 @@ namespace MoldDetails
             // 
             this.toCavNum_label.AutoSize = true;
             this.toCavNum_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toCavNum_label.Location = new System.Drawing.Point(750, 211);
+            this.toCavNum_label.Location = new System.Drawing.Point(771, 211);
             this.toCavNum_label.Name = "toCavNum_label";
             this.toCavNum_label.Size = new System.Drawing.Size(56, 23);
             this.toCavNum_label.TabIndex = 26;
@@ -417,7 +417,7 @@ namespace MoldDetails
             // 
             this.toNW_label.AutoSize = true;
             this.toNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toNW_label.Location = new System.Drawing.Point(750, 299);
+            this.toNW_label.Location = new System.Drawing.Point(771, 299);
             this.toNW_label.Name = "toNW_label";
             this.toNW_label.Size = new System.Drawing.Size(79, 23);
             this.toNW_label.TabIndex = 25;
@@ -427,7 +427,7 @@ namespace MoldDetails
             // 
             this.toGW_label.AutoSize = true;
             this.toGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toGW_label.Location = new System.Drawing.Point(750, 255);
+            this.toGW_label.Location = new System.Drawing.Point(771, 255);
             this.toGW_label.Name = "toGW_label";
             this.toGW_label.Size = new System.Drawing.Size(79, 23);
             this.toGW_label.TabIndex = 24;
@@ -437,7 +437,7 @@ namespace MoldDetails
             // 
             this.quotSprue_label.AutoSize = true;
             this.quotSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotSprue_label.Location = new System.Drawing.Point(750, 486);
+            this.quotSprue_label.Location = new System.Drawing.Point(771, 486);
             this.quotSprue_label.Name = "quotSprue_label";
             this.quotSprue_label.Size = new System.Drawing.Size(56, 23);
             this.quotSprue_label.TabIndex = 31;
@@ -447,7 +447,7 @@ namespace MoldDetails
             // 
             this.quotNW_label.AutoSize = true;
             this.quotNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotNW_label.Location = new System.Drawing.Point(750, 443);
+            this.quotNW_label.Location = new System.Drawing.Point(771, 443);
             this.quotNW_label.Name = "quotNW_label";
             this.quotNW_label.Size = new System.Drawing.Size(56, 23);
             this.quotNW_label.TabIndex = 30;
@@ -457,7 +457,7 @@ namespace MoldDetails
             // 
             this.quotGW_label.AutoSize = true;
             this.quotGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotGW_label.Location = new System.Drawing.Point(750, 400);
+            this.quotGW_label.Location = new System.Drawing.Point(771, 400);
             this.quotGW_label.Name = "quotGW_label";
             this.quotGW_label.Size = new System.Drawing.Size(56, 23);
             this.quotGW_label.TabIndex = 29;
@@ -477,7 +477,7 @@ namespace MoldDetails
             // 
             this.clientCons_label.AutoSize = true;
             this.clientCons_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientCons_label.Location = new System.Drawing.Point(750, 678);
+            this.clientCons_label.Location = new System.Drawing.Point(771, 678);
             this.clientCons_label.Name = "clientCons_label";
             this.clientCons_label.Size = new System.Drawing.Size(79, 23);
             this.clientCons_label.TabIndex = 37;
@@ -487,7 +487,7 @@ namespace MoldDetails
             // 
             this.clientSprue_label.AutoSize = true;
             this.clientSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientSprue_label.Location = new System.Drawing.Point(750, 635);
+            this.clientSprue_label.Location = new System.Drawing.Point(771, 635);
             this.clientSprue_label.Name = "clientSprue_label";
             this.clientSprue_label.Size = new System.Drawing.Size(56, 23);
             this.clientSprue_label.TabIndex = 36;
@@ -497,7 +497,7 @@ namespace MoldDetails
             // 
             this.clientNW_label.AutoSize = true;
             this.clientNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientNW_label.Location = new System.Drawing.Point(750, 592);
+            this.clientNW_label.Location = new System.Drawing.Point(771, 592);
             this.clientNW_label.Name = "clientNW_label";
             this.clientNW_label.Size = new System.Drawing.Size(56, 23);
             this.clientNW_label.TabIndex = 35;
@@ -507,7 +507,7 @@ namespace MoldDetails
             // 
             this.clientGW_label.AutoSize = true;
             this.clientGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientGW_label.Location = new System.Drawing.Point(750, 549);
+            this.clientGW_label.Location = new System.Drawing.Point(771, 549);
             this.clientGW_label.Name = "clientGW_label";
             this.clientGW_label.Size = new System.Drawing.Size(56, 23);
             this.clientGW_label.TabIndex = 34;
@@ -701,7 +701,7 @@ namespace MoldDetails
             this.machine_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.machine_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.machine_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.machine_textBox.Location = new System.Drawing.Point(835, 161);
+            this.machine_textBox.Location = new System.Drawing.Point(856, 161);
             this.machine_textBox.Name = "machine_textBox";
             this.machine_textBox.Size = new System.Drawing.Size(115, 35);
             this.machine_textBox.TabIndex = 55;
@@ -711,7 +711,7 @@ namespace MoldDetails
             this.quotSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotSprue_textBox.Location = new System.Drawing.Point(835, 482);
+            this.quotSprue_textBox.Location = new System.Drawing.Point(856, 482);
             this.quotSprue_textBox.Name = "quotSprue_textBox";
             this.quotSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotSprue_textBox.TabIndex = 58;
@@ -721,7 +721,7 @@ namespace MoldDetails
             this.quotNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotNW_textBox.Location = new System.Drawing.Point(835, 439);
+            this.quotNW_textBox.Location = new System.Drawing.Point(856, 439);
             this.quotNW_textBox.Name = "quotNW_textBox";
             this.quotNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotNW_textBox.TabIndex = 57;
@@ -731,7 +731,7 @@ namespace MoldDetails
             this.quotGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotGW_textBox.Location = new System.Drawing.Point(835, 396);
+            this.quotGW_textBox.Location = new System.Drawing.Point(856, 396);
             this.quotGW_textBox.Name = "quotGW_textBox";
             this.quotGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotGW_textBox.TabIndex = 56;
@@ -741,7 +741,7 @@ namespace MoldDetails
             this.clientCons_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientCons_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientCons_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientCons_textBox.Location = new System.Drawing.Point(835, 674);
+            this.clientCons_textBox.Location = new System.Drawing.Point(856, 674);
             this.clientCons_textBox.Name = "clientCons_textBox";
             this.clientCons_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientCons_textBox.TabIndex = 63;
@@ -751,7 +751,7 @@ namespace MoldDetails
             this.clientSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientSprue_textBox.Location = new System.Drawing.Point(835, 631);
+            this.clientSprue_textBox.Location = new System.Drawing.Point(856, 631);
             this.clientSprue_textBox.Name = "clientSprue_textBox";
             this.clientSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientSprue_textBox.TabIndex = 62;
@@ -761,7 +761,7 @@ namespace MoldDetails
             this.clientNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientNW_textBox.Location = new System.Drawing.Point(835, 588);
+            this.clientNW_textBox.Location = new System.Drawing.Point(856, 588);
             this.clientNW_textBox.Name = "clientNW_textBox";
             this.clientNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientNW_textBox.TabIndex = 61;
@@ -771,7 +771,7 @@ namespace MoldDetails
             this.clientGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientGW_textBox.Location = new System.Drawing.Point(835, 545);
+            this.clientGW_textBox.Location = new System.Drawing.Point(856, 545);
             this.clientGW_textBox.Name = "clientGW_textBox";
             this.clientGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientGW_textBox.TabIndex = 60;
@@ -781,7 +781,7 @@ namespace MoldDetails
             this.toSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toSprue_textBox.Location = new System.Drawing.Point(835, 337);
+            this.toSprue_textBox.Location = new System.Drawing.Point(856, 337);
             this.toSprue_textBox.Name = "toSprue_textBox";
             this.toSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.toSprue_textBox.TabIndex = 67;
@@ -791,7 +791,7 @@ namespace MoldDetails
             this.toCavNum_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toCavNum_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toCavNum_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toCavNum_textBox.Location = new System.Drawing.Point(835, 205);
+            this.toCavNum_textBox.Location = new System.Drawing.Point(856, 205);
             this.toCavNum_textBox.Name = "toCavNum_textBox";
             this.toCavNum_textBox.Size = new System.Drawing.Size(115, 35);
             this.toCavNum_textBox.TabIndex = 66;
@@ -801,7 +801,7 @@ namespace MoldDetails
             this.toNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toNW_textBox.Location = new System.Drawing.Point(835, 293);
+            this.toNW_textBox.Location = new System.Drawing.Point(856, 293);
             this.toNW_textBox.Name = "toNW_textBox";
             this.toNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.toNW_textBox.TabIndex = 65;
@@ -811,7 +811,7 @@ namespace MoldDetails
             this.toGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toGW_textBox.Location = new System.Drawing.Point(835, 249);
+            this.toGW_textBox.Location = new System.Drawing.Point(856, 249);
             this.toGW_textBox.Name = "toGW_textBox";
             this.toGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.toGW_textBox.TabIndex = 64;
@@ -945,23 +945,23 @@ namespace MoldDetails
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dataGridView.Location = new System.Drawing.Point(23, 77);
             this.dataGridView.MultiSelect = false;
@@ -1440,7 +1440,7 @@ namespace MoldDetails
             this.errLog_MenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1547, 37);
+            this.menuStrip1.Size = new System.Drawing.Size(1545, 37);
             this.menuStrip1.TabIndex = 119;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1463,7 +1463,7 @@ namespace MoldDetails
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1547, 1313);
+            this.ClientSize = new System.Drawing.Size(1566, 1055);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
