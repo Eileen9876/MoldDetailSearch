@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MyLib;
 
 namespace MoldDetails
 {
@@ -10,9 +11,9 @@ namespace MoldDetails
 
         private readonly PictureBox[] PictureBoxes;
 
-        private DB_Operator DB_OP;
+        private DBHandler DbHandler;
 
-        public MoldInfoForm(DB_Operator DB_OP)
+        public MoldInfoForm(DBHandler DbHandler)
         {
             InitializeComponent();
 
@@ -32,7 +33,7 @@ namespace MoldDetails
 
             PictureBoxes = new PictureBox[] { img1_pictureBox, img2_pictureBox };
 
-            this.DB_OP = DB_OP;
+            this.DbHandler = DbHandler;
         }
 
         private void add_button_Click(object sender, EventArgs e)
@@ -46,22 +47,27 @@ namespace MoldDetails
             ProgressTrack track = ProgressTrack.Run(this, () =>
             {
                 // 資料已存在，更新資料
-                if (DB_OP.CheckDataExist(itemId_textBox.Text))
+                if (DbOperator.CheckDataExist(DbHandler, itemId_textBox.Text))
                 {
-                    if (!MsgBox.Show(this, "該筆資料已存在，要進行更新嗎？", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)) return;
+                    if (!MsgBox.Show(this, 
+                                     "該筆資料已存在，要進行更新嗎？", 
+                                     MessageBoxButtons.OKCancel, 
+                                     MessageBoxIcon.Warning)) return;
 
-                    DB_OP.UpdateData(itemId_textBox.Text,
-                                    MainForm.Get_ColName(TextBoxes),
-                                    MainForm.Get_TextBoxValue(TextBoxes),
-                                    MainForm.Get_ImageBinaryValue(PictureBoxes));
+                    DbOperator.UpdateData(DbHandler,
+                                          itemId_textBox.Text,
+                                          MainForm.Get_ColName(TextBoxes),
+                                          MainForm.Get_TextBoxValue(TextBoxes),
+                                          MainForm.Get_ImageBinaryValue(PictureBoxes));
 
                     return;
                 }
 
                 // 新增資料
-                DB_OP.AddData(MainForm.Get_ColName(TextBoxes),
-                              MainForm.Get_TextBoxValue(TextBoxes),
-                              MainForm.Get_ImageBinaryValue(PictureBoxes));
+                DbOperator.AddData(DbHandler, 
+                                   MainForm.Get_ColName(TextBoxes),
+                                   MainForm.Get_TextBoxValue(TextBoxes),
+                                   MainForm.Get_ImageBinaryValue(PictureBoxes));
             });
 
             ResultMsgShow_And_ErrLog("執行成功", "執行失敗", track.GetException);

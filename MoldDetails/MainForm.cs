@@ -40,7 +40,7 @@ namespace MoldDetails
 
         private readonly PictureBox[] PictureBoxes;
 
-        private DB_Operator DB_OP;
+        private DBHandler DbHandler;
 
         private DataGridViewInfo ViewInfo; 
 
@@ -174,7 +174,7 @@ namespace MoldDetails
                     Filter = "|*.accdb"
                 };
 
-                if (dialog.ShowDialog() != DialogResult.OK) 
+                if (dialog.ShowDialog() != DialogResult.OK)
                 {
                     this.Dispose();
                     return;
@@ -185,10 +185,11 @@ namespace MoldDetails
                 File.WriteAllLines(DataBase_FILE_PATH, new string[] { file_path + "\r\n\r\n" + file_path });
             }
             else file_path = File.ReadLines(DataBase_FILE_PATH).First();
+    
  
-            // 資料庫操作
-            DB_OP = new DB_Operator();
-            DB_OP.ConnectDB(file_path);
+            // 資料庫初始化並連線
+            DbHandler = new DBHandler();
+            DbOperator.ConnectDB(DbHandler, file_path);
         }
 
         private void AdjustFormSize()
@@ -198,7 +199,7 @@ namespace MoldDetails
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            MoldInfoForm form = new MoldInfoForm(DB_OP);
+            MoldInfoForm form = new MoldInfoForm(DbHandler);
 
             try 
             { 
@@ -220,10 +221,11 @@ namespace MoldDetails
 
             ProgressTrack track = ProgressTrack.Run(this, () =>
             {
-                DB_OP.UpdateData(itemId_textBox.Text, 
-                                Get_ColName(TextBoxes), 
-                                Get_TextBoxValue(TextBoxes),
-                                Get_ImageBinaryValue(PictureBoxes));
+                DbOperator.UpdateData(DbHandler, 
+                                 itemId_textBox.Text, 
+                                 Get_ColName(TextBoxes), 
+                                 Get_TextBoxValue(TextBoxes),
+                                 Get_ImageBinaryValue(PictureBoxes));
             });
 
             ResultMsgShow_And_ErrLog("資料更新成功", "資料更新失敗", track.GetException);
@@ -246,7 +248,7 @@ namespace MoldDetails
                     if (!btn.Checked) continue;
 
                     track.SetMsg("查詢中");
-                    DataTable table = DB_OP.SearchData(btn.Name.Split('_')[0], search_textBox.Text);
+                    DataTable table = DbOperator.SearchData(DbHandler, btn.Name.Split('_')[0], search_textBox.Text);
                     if (table.Rows.Count == 0)
                     {
                         MsgBox.Show(this, "查無該筆資料");
@@ -256,7 +258,7 @@ namespace MoldDetails
                     // 假如查詢條件為「貨品編號」則顯示於上方 Textbox，否則顯示於下方的 DataGridView。
                     track.SetMsg("查詢完畢，將資料顯示於頁面中");
                     Exception ex;
-                    if (btn.Name == DB_OP.Primary_Column + "_radioBtn")
+                    if (btn.Name == "itemId_radioBtn")
                     {
                         ex = Invoke_ListInTextbox(table.Rows[0]);
                     }
@@ -278,7 +280,7 @@ namespace MoldDetails
 
         private void delete_button_Click(object sender, EventArgs e)
         {
-            if (!DB_OP.CheckDataExist(itemId_textBox.Text))
+            if (!DbOperator.CheckDataExist(DbHandler, itemId_textBox.Text))
             {
                 MsgBox.Show(this, "查無資料");
                 return;
@@ -288,7 +290,7 @@ namespace MoldDetails
 
             ProgressTrack track = ProgressTrack.Run(this, () =>
             {
-                DB_OP.DeleteData(itemId_textBox.Text);
+                DbOperator.DeleteData(DbHandler, itemId_textBox.Text);
             });
 
             ResultMsgShow_And_ErrLog("資料刪除成功", "資料刪除失敗", track.GetException);
@@ -308,7 +310,7 @@ namespace MoldDetails
             track.Run(() =>
             {
                 track.SetMsg("獲取資料");
-                DataTable table = DB_OP.GetAllData();
+                DataTable table = DbOperator.GetAllData(DbHandler);
                 if (table.Rows.Count == 0)
                 {
                     MsgBox.Show(this, "無資料");
@@ -366,7 +368,7 @@ namespace MoldDetails
 
                 if (current_filepath != form.Db_FilePath)
                 {
-                    DB_OP.ConnectDB(form.Db_FilePath);
+                    DbOperator.ConnectDB(DbHandler, form.Db_FilePath);
 
                     MsgBox.Show(this, "資料庫更換成功");
                 }
@@ -375,7 +377,7 @@ namespace MoldDetails
             {
                 Log_Error(ex);
 
-                DB_OP.ConnectDB(current_filepath);
+                DbOperator.ConnectDB(DbHandler, current_filepath);
 
                 MsgBox.ShowErr(this, "資料庫更換失敗", ex);
             }
