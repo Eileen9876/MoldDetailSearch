@@ -12,11 +12,25 @@ namespace MoldDetails
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Excel 範本檔位置
+        /// </summary>
         private readonly static string EXCEL_SAMPLE_FILE_PATH = @"assets\sample.xlsx";
 
+        /// <summary>
+        /// 錯誤訊息紀錄檔位置
+        /// </summary>
         private readonly static string ERR_LOG_FILE_PATH = @"data\ErrLog.txt";
 
+        /// <summary>
+        /// 該檔案存放使用者使用到的資料庫位置
+        /// </summary>
         private readonly static string DataBase_FILE_PATH = @"data\DatabaseFilePath.txt";
+
+        /// <summary>
+        /// 要寫入Excel的資料標頭順序
+        /// </summary>
+        private readonly string[] Excel_Columns;
 
         private readonly TextBox[] TextBoxes;
 
@@ -43,6 +57,18 @@ namespace MoldDetails
             InitializeDatabase();
 
             AdjustFormSize();
+
+            Excel_Columns = new string[] {
+                "moldId", "itemId", "itemName",
+                "corId", "corNum", "corComp",
+                "cavId", "cavNum", "cavComp",
+                "texPitch", "texMaxDia", "texMinDia",
+                "orgPrice", "fivePrice", "tenPrice", "thirtyPrice",
+                "machine", "toGW", "toNW", "toCavNum", "toSprue",
+                "quotNW", "quotSprue", "quotGW",
+                "clientNW", "clientSprue", "clientGW", "clientCons",
+                "notes"
+            };
 
             TextBoxes = new TextBox[]{
                 moldId_textBox, itemId_textBox, itemName_textBox,
@@ -571,14 +597,13 @@ namespace MoldDetails
                 wb = app.Workbooks.Open(fileName);
                 ws = wb.Worksheets[1];
 
-                int columns_count = table_columns.Length - 2; // -2 去除 img1 與 img2
                 int r = 3;
                 foreach (DataRow dr in table.Rows)
                 {
                     int c = 1;
-                    for(int i = 0; i < columns_count; i++)
+                    for(int i = 0; i < Excel_Columns.Length; i++)
                     {
-                        ws.Cells[r, c] = dr[table_columns[i]];
+                        ws.Cells[r, c] = dr[Excel_Columns[i]]; // 按順序寫入
                         c++;
                     }
                     r++;
