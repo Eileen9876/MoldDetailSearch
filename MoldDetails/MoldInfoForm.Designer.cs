@@ -262,7 +262,7 @@ namespace MoldDetails
             // 
             this.img1_label.AutoSize = true;
             this.img1_label.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.img1_label.Location = new System.Drawing.Point(1006, 165);
+            this.img1_label.Location = new System.Drawing.Point(1018, 165);
             this.img1_label.Name = "img1_label";
             this.img1_label.Size = new System.Drawing.Size(58, 20);
             this.img1_label.TabIndex = 15;
@@ -272,7 +272,7 @@ namespace MoldDetails
             // 
             this.img2_label.AutoSize = true;
             this.img2_label.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.img2_label.Location = new System.Drawing.Point(1006, 443);
+            this.img2_label.Location = new System.Drawing.Point(1018, 443);
             this.img2_label.Name = "img2_label";
             this.img2_label.Size = new System.Drawing.Size(58, 20);
             this.img2_label.TabIndex = 16;
@@ -332,7 +332,7 @@ namespace MoldDetails
             // 
             this.machine_label.AutoSize = true;
             this.machine_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.machine_label.Location = new System.Drawing.Point(747, 169);
+            this.machine_label.Location = new System.Drawing.Point(776, 169);
             this.machine_label.Name = "machine_label";
             this.machine_label.Size = new System.Drawing.Size(56, 23);
             this.machine_label.TabIndex = 22;
@@ -352,7 +352,7 @@ namespace MoldDetails
             // 
             this.toSprue_label.AutoSize = true;
             this.toSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toSprue_label.Location = new System.Drawing.Point(747, 345);
+            this.toSprue_label.Location = new System.Drawing.Point(776, 345);
             this.toSprue_label.Name = "toSprue_label";
             this.toSprue_label.Size = new System.Drawing.Size(79, 23);
             this.toSprue_label.TabIndex = 27;
@@ -362,7 +362,7 @@ namespace MoldDetails
             // 
             this.toCavNum_label.AutoSize = true;
             this.toCavNum_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toCavNum_label.Location = new System.Drawing.Point(747, 213);
+            this.toCavNum_label.Location = new System.Drawing.Point(776, 213);
             this.toCavNum_label.Name = "toCavNum_label";
             this.toCavNum_label.Size = new System.Drawing.Size(56, 23);
             this.toCavNum_label.TabIndex = 26;
@@ -372,7 +372,7 @@ namespace MoldDetails
             // 
             this.toNW_label.AutoSize = true;
             this.toNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toNW_label.Location = new System.Drawing.Point(747, 301);
+            this.toNW_label.Location = new System.Drawing.Point(776, 301);
             this.toNW_label.Name = "toNW_label";
             this.toNW_label.Size = new System.Drawing.Size(79, 23);
             this.toNW_label.TabIndex = 25;
@@ -382,7 +382,7 @@ namespace MoldDetails
             // 
             this.toGW_label.AutoSize = true;
             this.toGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toGW_label.Location = new System.Drawing.Point(747, 257);
+            this.toGW_label.Location = new System.Drawing.Point(776, 257);
             this.toGW_label.Name = "toGW_label";
             this.toGW_label.Size = new System.Drawing.Size(79, 23);
             this.toGW_label.TabIndex = 24;
@@ -392,7 +392,7 @@ namespace MoldDetails
             // 
             this.quotSprue_label.AutoSize = true;
             this.quotSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotSprue_label.Location = new System.Drawing.Point(747, 488);
+            this.quotSprue_label.Location = new System.Drawing.Point(776, 488);
             this.quotSprue_label.Name = "quotSprue_label";
             this.quotSprue_label.Size = new System.Drawing.Size(56, 23);
             this.quotSprue_label.TabIndex = 31;
@@ -402,7 +402,7 @@ namespace MoldDetails
             // 
             this.quotNW_label.AutoSize = true;
             this.quotNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotNW_label.Location = new System.Drawing.Point(747, 445);
+            this.quotNW_label.Location = new System.Drawing.Point(776, 445);
             this.quotNW_label.Name = "quotNW_label";
             this.quotNW_label.Size = new System.Drawing.Size(56, 23);
             this.quotNW_label.TabIndex = 30;
@@ -412,7 +412,7 @@ namespace MoldDetails
             // 
             this.quotGW_label.AutoSize = true;
             this.quotGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotGW_label.Location = new System.Drawing.Point(747, 402);
+            this.quotGW_label.Location = new System.Drawing.Point(776, 402);
             this.quotGW_label.Name = "quotGW_label";
             this.quotGW_label.Size = new System.Drawing.Size(56, 23);
             this.quotGW_label.TabIndex = 29;
@@ -432,7 +432,7 @@ namespace MoldDetails
             // 
             this.clientCons_label.AutoSize = true;
             this.clientCons_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientCons_label.Location = new System.Drawing.Point(747, 680);
+            this.clientCons_label.Location = new System.Drawing.Point(776, 680);
             this.clientCons_label.Name = "clientCons_label";
             this.clientCons_label.Size = new System.Drawing.Size(79, 23);
             this.clientCons_label.TabIndex = 37;
@@ -442,7 +442,7 @@ namespace MoldDetails
             // 
             this.clientSprue_label.AutoSize = true;
             this.clientSprue_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientSprue_label.Location = new System.Drawing.Point(747, 637);
+            this.clientSprue_label.Location = new System.Drawing.Point(776, 637);
             this.clientSprue_label.Name = "clientSprue_label";
             this.clientSprue_label.Size = new System.Drawing.Size(56, 23);
             this.clientSprue_label.TabIndex = 36;
@@ -452,7 +452,7 @@ namespace MoldDetails
             // 
             this.clientNW_label.AutoSize = true;
             this.clientNW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientNW_label.Location = new System.Drawing.Point(747, 594);
+            this.clientNW_label.Location = new System.Drawing.Point(776, 594);
             this.clientNW_label.Name = "clientNW_label";
             this.clientNW_label.Size = new System.Drawing.Size(56, 23);
             this.clientNW_label.TabIndex = 35;
@@ -462,7 +462,7 @@ namespace MoldDetails
             // 
             this.clientGW_label.AutoSize = true;
             this.clientGW_label.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientGW_label.Location = new System.Drawing.Point(747, 551);
+            this.clientGW_label.Location = new System.Drawing.Point(776, 551);
             this.clientGW_label.Name = "clientGW_label";
             this.clientGW_label.Size = new System.Drawing.Size(56, 23);
             this.clientGW_label.TabIndex = 34;
@@ -655,7 +655,7 @@ namespace MoldDetails
             this.machine_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.machine_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.machine_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.machine_textBox.Location = new System.Drawing.Point(832, 163);
+            this.machine_textBox.Location = new System.Drawing.Point(861, 163);
             this.machine_textBox.Name = "machine_textBox";
             this.machine_textBox.Size = new System.Drawing.Size(115, 35);
             this.machine_textBox.TabIndex = 55;
@@ -665,7 +665,7 @@ namespace MoldDetails
             this.quotSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotSprue_textBox.Location = new System.Drawing.Point(832, 484);
+            this.quotSprue_textBox.Location = new System.Drawing.Point(861, 484);
             this.quotSprue_textBox.Name = "quotSprue_textBox";
             this.quotSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotSprue_textBox.TabIndex = 58;
@@ -675,7 +675,7 @@ namespace MoldDetails
             this.quotNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotNW_textBox.Location = new System.Drawing.Point(832, 441);
+            this.quotNW_textBox.Location = new System.Drawing.Point(861, 441);
             this.quotNW_textBox.Name = "quotNW_textBox";
             this.quotNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotNW_textBox.TabIndex = 57;
@@ -685,7 +685,7 @@ namespace MoldDetails
             this.quotGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.quotGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.quotGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.quotGW_textBox.Location = new System.Drawing.Point(832, 398);
+            this.quotGW_textBox.Location = new System.Drawing.Point(861, 398);
             this.quotGW_textBox.Name = "quotGW_textBox";
             this.quotGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.quotGW_textBox.TabIndex = 56;
@@ -695,7 +695,7 @@ namespace MoldDetails
             this.clientCons_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientCons_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientCons_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientCons_textBox.Location = new System.Drawing.Point(832, 676);
+            this.clientCons_textBox.Location = new System.Drawing.Point(861, 676);
             this.clientCons_textBox.Name = "clientCons_textBox";
             this.clientCons_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientCons_textBox.TabIndex = 63;
@@ -705,7 +705,7 @@ namespace MoldDetails
             this.clientSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientSprue_textBox.Location = new System.Drawing.Point(832, 633);
+            this.clientSprue_textBox.Location = new System.Drawing.Point(861, 633);
             this.clientSprue_textBox.Name = "clientSprue_textBox";
             this.clientSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientSprue_textBox.TabIndex = 62;
@@ -715,7 +715,7 @@ namespace MoldDetails
             this.clientNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientNW_textBox.Location = new System.Drawing.Point(832, 590);
+            this.clientNW_textBox.Location = new System.Drawing.Point(861, 590);
             this.clientNW_textBox.Name = "clientNW_textBox";
             this.clientNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientNW_textBox.TabIndex = 61;
@@ -725,7 +725,7 @@ namespace MoldDetails
             this.clientGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.clientGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.clientGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clientGW_textBox.Location = new System.Drawing.Point(832, 547);
+            this.clientGW_textBox.Location = new System.Drawing.Point(861, 547);
             this.clientGW_textBox.Name = "clientGW_textBox";
             this.clientGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.clientGW_textBox.TabIndex = 60;
@@ -735,7 +735,7 @@ namespace MoldDetails
             this.toSprue_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toSprue_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toSprue_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toSprue_textBox.Location = new System.Drawing.Point(832, 339);
+            this.toSprue_textBox.Location = new System.Drawing.Point(861, 339);
             this.toSprue_textBox.Name = "toSprue_textBox";
             this.toSprue_textBox.Size = new System.Drawing.Size(115, 35);
             this.toSprue_textBox.TabIndex = 67;
@@ -745,7 +745,7 @@ namespace MoldDetails
             this.toCavNum_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toCavNum_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toCavNum_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toCavNum_textBox.Location = new System.Drawing.Point(832, 207);
+            this.toCavNum_textBox.Location = new System.Drawing.Point(861, 207);
             this.toCavNum_textBox.Name = "toCavNum_textBox";
             this.toCavNum_textBox.Size = new System.Drawing.Size(115, 35);
             this.toCavNum_textBox.TabIndex = 66;
@@ -755,7 +755,7 @@ namespace MoldDetails
             this.toNW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toNW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toNW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toNW_textBox.Location = new System.Drawing.Point(832, 295);
+            this.toNW_textBox.Location = new System.Drawing.Point(861, 295);
             this.toNW_textBox.Name = "toNW_textBox";
             this.toNW_textBox.Size = new System.Drawing.Size(115, 35);
             this.toNW_textBox.TabIndex = 65;
@@ -765,7 +765,7 @@ namespace MoldDetails
             this.toGW_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.toGW_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toGW_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.toGW_textBox.Location = new System.Drawing.Point(832, 251);
+            this.toGW_textBox.Location = new System.Drawing.Point(861, 251);
             this.toGW_textBox.Name = "toGW_textBox";
             this.toGW_textBox.Size = new System.Drawing.Size(115, 35);
             this.toGW_textBox.TabIndex = 64;
@@ -777,13 +777,13 @@ namespace MoldDetails
             this.notes_textBox.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.notes_textBox.Location = new System.Drawing.Point(79, 736);
             this.notes_textBox.Name = "notes_textBox";
-            this.notes_textBox.Size = new System.Drawing.Size(1185, 35);
+            this.notes_textBox.Size = new System.Drawing.Size(1197, 35);
             this.notes_textBox.TabIndex = 68;
             // 
             // img1_pictureBox
             // 
             this.img1_pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img1_pictureBox.Location = new System.Drawing.Point(1010, 193);
+            this.img1_pictureBox.Location = new System.Drawing.Point(1022, 193);
             this.img1_pictureBox.Name = "img1_pictureBox";
             this.img1_pictureBox.Size = new System.Drawing.Size(254, 240);
             this.img1_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -793,7 +793,7 @@ namespace MoldDetails
             // img2_pictureBox
             // 
             this.img2_pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.img2_pictureBox.Location = new System.Drawing.Point(1010, 471);
+            this.img2_pictureBox.Location = new System.Drawing.Point(1022, 471);
             this.img2_pictureBox.Name = "img2_pictureBox";
             this.img2_pictureBox.Size = new System.Drawing.Size(254, 240);
             this.img2_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -805,7 +805,7 @@ namespace MoldDetails
             this.img2_chooseBtn.AutoSize = true;
             this.img2_chooseBtn.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.img2_chooseBtn.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.img2_chooseBtn.Location = new System.Drawing.Point(1070, 443);
+            this.img2_chooseBtn.Location = new System.Drawing.Point(1082, 443);
             this.img2_chooseBtn.Name = "img2_chooseBtn";
             this.img2_chooseBtn.Size = new System.Drawing.Size(89, 20);
             this.img2_chooseBtn.TabIndex = 77;
@@ -817,7 +817,7 @@ namespace MoldDetails
             this.img2_clearBtn.AutoSize = true;
             this.img2_clearBtn.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.img2_clearBtn.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.img2_clearBtn.Location = new System.Drawing.Point(1165, 443);
+            this.img2_clearBtn.Location = new System.Drawing.Point(1177, 443);
             this.img2_clearBtn.Name = "img2_clearBtn";
             this.img2_clearBtn.Size = new System.Drawing.Size(49, 20);
             this.img2_clearBtn.TabIndex = 82;
@@ -829,7 +829,7 @@ namespace MoldDetails
             this.img1_chooseBtn.AutoSize = true;
             this.img1_chooseBtn.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.img1_chooseBtn.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.img1_chooseBtn.Location = new System.Drawing.Point(1070, 166);
+            this.img1_chooseBtn.Location = new System.Drawing.Point(1082, 166);
             this.img1_chooseBtn.Name = "img1_chooseBtn";
             this.img1_chooseBtn.Size = new System.Drawing.Size(89, 20);
             this.img1_chooseBtn.TabIndex = 76;
@@ -841,7 +841,7 @@ namespace MoldDetails
             this.img1_clearBtn.AutoSize = true;
             this.img1_clearBtn.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.img1_clearBtn.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.img1_clearBtn.Location = new System.Drawing.Point(1165, 166);
+            this.img1_clearBtn.Location = new System.Drawing.Point(1177, 166);
             this.img1_clearBtn.Name = "img1_clearBtn";
             this.img1_clearBtn.Size = new System.Drawing.Size(49, 20);
             this.img1_clearBtn.TabIndex = 81;
@@ -851,7 +851,7 @@ namespace MoldDetails
             // add_button
             // 
             this.add_button.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.add_button.Location = new System.Drawing.Point(977, 18);
+            this.add_button.Location = new System.Drawing.Point(989, 18);
             this.add_button.Name = "add_button";
             this.add_button.Size = new System.Drawing.Size(133, 125);
             this.add_button.TabIndex = 83;
@@ -862,7 +862,7 @@ namespace MoldDetails
             // clear_button
             // 
             this.clear_button.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clear_button.Location = new System.Drawing.Point(1131, 18);
+            this.clear_button.Location = new System.Drawing.Point(1143, 18);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(133, 125);
             this.clear_button.TabIndex = 85;
@@ -875,7 +875,7 @@ namespace MoldDetails
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1286, 794);
+            this.ClientSize = new System.Drawing.Size(1296, 794);
             this.Controls.Add(this.clear_button);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.img2_clearBtn);
