@@ -387,25 +387,6 @@ namespace MoldDetails
             }
         }
 
-        private void errLog_MenuItem_Click(object sender, EventArgs e)
-        {
-            LogForm form = new LogForm();
-            try 
-            { 
-                form.ShowDialog(); 
-            }
-            catch (Exception ex) 
-            {
-                Log_Error(ex);
-
-                MsgBox.ShowErr(this, "開啟失敗", ex);
-            }
-            finally 
-            { 
-                form.Dispose(); 
-            }
-        }
-
         private void img1_chooseBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog
