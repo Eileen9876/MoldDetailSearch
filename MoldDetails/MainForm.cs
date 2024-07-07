@@ -42,7 +42,9 @@ namespace MoldDetails
 
         private DBHandler DbHandler;
 
-        private DataGridViewInfo ViewInfo; 
+        private DataGridViewInfo ViewInfo;
+
+        private MoldInfoForm AddForm;
 
         private delegate Exception ListRow(DataRow row); // 多執行緒使用
 
@@ -113,6 +115,8 @@ namespace MoldDetails
             };
 
             PictureBoxes = new PictureBox[] { img1_pictureBox, img2_pictureBox };
+
+            AddForm = null;
 
             itemId_textBox.Enabled = false;
 
@@ -199,19 +203,29 @@ namespace MoldDetails
 
         private void add_button_Click(object sender, EventArgs e)
         {
-            MoldInfoForm form = new MoldInfoForm(DbHandler);
-
             try 
-            { 
-                form.ShowDialog(); 
+            {
+                if (AddForm == null || AddForm.IsDisposed)
+                {
+                    AddForm = new MoldInfoForm(DbHandler);
+                    AddForm.Show(this);
+                    AddForm.FormClosed += (sender_, e_) =>
+                    {
+                        AddForm.Dispose();
+                    };
+                }
+                else
+                {
+                    AddForm.BringToFront();
+                }
             }
             catch (Exception ex) 
-            { 
+            {
+                AddForm.Dispose();
+
                 Log_Error(ex);
-            }
-            finally 
-            { 
-                form.Dispose(); 
+
+                ResultMsgShow_And_ErrLog("", "開啟「新增」視窗失敗", ex);
             }
         }
 

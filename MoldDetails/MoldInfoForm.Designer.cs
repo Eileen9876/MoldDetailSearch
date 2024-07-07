@@ -951,7 +951,7 @@ namespace MoldDetails
             this.Controls.Add(this.itemName_label);
             this.Controls.Add(this.itemId_label);
             this.Controls.Add(this.moldId_label);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MoldInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增";

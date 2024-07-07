@@ -17,7 +17,7 @@ namespace MoldDetails
         {
             InitializeComponent();
 
-            this.StartPosition = FormStartPosition.CenterParent;
+            this.DbHandler = DbHandler;
 
             TextBoxes = new TextBox[]{
                 moldId_textBox, itemId_textBox, itemName_textBox,
@@ -32,8 +32,18 @@ namespace MoldDetails
             };
 
             PictureBoxes = new PictureBox[] { img1_pictureBox, img2_pictureBox };
+        }
 
-            this.DbHandler = DbHandler;
+        public void Show(Control control)
+        {
+            this.StartPosition = FormStartPosition.Manual;
+
+            this.Location = new Point(
+                control.Location.X + (control.Width - this.Width) / 2,
+                control.Location.Y + (control.Height - this.Height) / 2
+            );
+
+            this.Show();
         }
 
         private void add_button_Click(object sender, EventArgs e)
