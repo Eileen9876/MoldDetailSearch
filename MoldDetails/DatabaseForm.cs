@@ -103,8 +103,12 @@ namespace MoldDetails
 
         private void setup_button_Click(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count > 0)
-                usedFile_textBox.Text = this.listView.SelectedItems[0].SubItems[1].Text;
+            if (listView.SelectedItems.Count <= 0) return;
+
+            string new_file = this.listView.SelectedItems[0].SubItems[1].Text;
+            
+            if (File.Exists(new_file)) usedFile_textBox.Text = new_file;
+            else MsgBox.Show(this, "檔案不存在", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ok_button_Click(object sender, EventArgs e)

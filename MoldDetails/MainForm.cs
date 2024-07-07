@@ -44,6 +44,9 @@ namespace MoldDetails
 
         private DataGridViewInfo ViewInfo;
 
+        /// <summary>
+        /// 「新增資料」視窗
+        /// </summary>
         private MoldInfoForm AddForm;
 
         private delegate Exception ListRow(DataRow row); // 多執行緒使用
@@ -189,8 +192,7 @@ namespace MoldDetails
                 File.WriteAllLines(DataBase_FILE_PATH, new string[] { file_path + "\r\n\r\n" + file_path });
             }
             else file_path = File.ReadLines(DataBase_FILE_PATH).First();
-    
- 
+
             // 資料庫初始化並連線
             DbHandler = new DBHandler();
             DbOperator.ConnectDB(DbHandler, file_path);
