@@ -175,23 +175,41 @@ namespace MoldDetails
             FileInfo file_info = new FileInfo(DataBase_FILE_PATH);
             if (file_info.Length == 0)
             {
-                OpenFileDialog dialog = new OpenFileDialog
-                {
-                    Title = "請選擇要使用的資料庫檔案",
-                    Filter = "|*.accdb"
-                };
+                file_path = Get_File("請選擇要使用的資料庫檔案", "|*.accdb");
 
-                if (dialog.ShowDialog() != DialogResult.OK)
+                if (file_path == "")
                 {
                     this.Dispose();
                     return;
                 }
 
-                file_path = dialog.FileName;
-
-                File.WriteAllLines(DataBase_FILE_PATH, new string[] { file_path + "\r\n\r\n" + file_path });
+                AppendLine(DataBase_FILE_PATH, file_path + "\r\n\r\n" + file_path);
             }
-            else file_path = File.ReadLines(DataBase_FILE_PATH).First();
+            else
+            {
+                file_path = File.ReadLines(DataBase_FILE_PATH).First();
+
+                if (!File.Exists(file_path))
+                {
+                    DatabaseForm form = new DatabaseForm();
+                    try
+                    {
+                        form.ShowDialog(this);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log_Error(ex);
+
+                        MsgBox.ShowErr(this, "更換成功", ex);
+                    }
+                    finally
+                    {
+                        MsgBox.Show(this, "更換成功");
+
+                        form.Dispose();
+                    }
+                }
+            }
 
             // 資料庫初始化並連線
             DbHandler = new DBHandler();
@@ -405,16 +423,10 @@ namespace MoldDetails
 
         private void img1_chooseBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Title = "請選擇圖片",
-                Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"
-            };
+            string file = Get_File("請選擇圖片",
+                                   "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png");
 
-            if (dialog.ShowDialog() == DialogResult.OK && dialog.FileName.Length > 0)
-            {
-                img1_pictureBox.Image = new Bitmap(dialog.FileName);
-            }
+            if (file != "") img1_pictureBox.Image = new Bitmap(file);
         }
 
         private void img1_clearBtn_Click(object sender, EventArgs e)
@@ -424,14 +436,10 @@ namespace MoldDetails
         
         private void img2_chooseBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "請選擇圖片";
-            dialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
+            string file = Get_File("請選擇圖片",
+                       "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png");
 
-            if (dialog.ShowDialog() == DialogResult.OK && dialog.FileName.Length > 0)
-            {
-                img2_pictureBox.Image = new Bitmap(dialog.FileName);
-            }
+            if (file != "") img2_pictureBox.Image = new Bitmap(file);
         }
 
         private void img2_clearBtn_Click(object sender, EventArgs e)
@@ -445,7 +453,7 @@ namespace MoldDetails
 
             if (row == -1) return;
 
-            List_In_Textbox(ViewInfo.Table.Rows[row]);
+            Invoke_ListInTextbox(ViewInfo.Table.Rows[row]);
         }
 
         private void ResultMsgShow_And_ErrLog(string success_msg, string error_msg, Exception ex)
@@ -480,7 +488,21 @@ namespace MoldDetails
 
             try
             {
-                List_In_Textbox(row);
+                Clear_AllTextBoxValue();
+
+                foreach (TextBox box in TextBoxes)
+                {
+                    string col_name = box.Name.Split('_')[0];
+                    box.Text = row[col_name].ToString();
+                }
+
+                foreach (PictureBox box in PictureBoxes)
+                {
+                    string col_name = box.Name.Split('_')[0];
+                    byte[] binary = row[col_name] as byte[];
+                    if (binary == null) continue;
+                    box.Image = BinaryToImage(binary);
+                }
             }
             catch (Exception ex)
             {
@@ -488,26 +510,6 @@ namespace MoldDetails
             }
 
             return null;
-        }
-
-
-        private void List_In_Textbox(DataRow row)
-        {
-            Clear_AllTextBoxValue();
-
-            foreach (TextBox box in TextBoxes)
-            {
-                string col_name = box.Name.Split('_')[0];
-                box.Text = row[col_name].ToString();
-            }
-
-            foreach (PictureBox box in PictureBoxes)
-            {
-                string col_name = box.Name.Split('_')[0];
-                byte[] binary = row[col_name] as byte[];
-                if (binary == null) continue;
-                box.Image = BinaryToImage(binary);
-            }
         }
 
         private Exception Invoke_ListInView(DataTable table)
@@ -521,7 +523,35 @@ namespace MoldDetails
 
             try
             {
-                List_In_DataGridView(table);
+                table.Columns.Remove("img1");
+                table.Columns.Remove("img2");
+
+                List<KeyValuePair<string, string[]>> header = new List<KeyValuePair<string, string[]>>(); //中文標頭資訊
+                List<string> table_col = new List<string>(); //將 table columns 進行排序用
+
+                for (int i = 0; i < CheckBoxes.Length; i++)
+                {
+                    if (CheckBoxes[i].Checked)
+                    {
+                        // 加入中文標頭
+                        header.Add(ViewInfo.HeaderChinese[i]);
+
+                        // 加入對應參數 table 的標頭名稱，用來排序。
+                        if (ViewInfo.HeaderEnglish[i].Value == null) table_col.Add(ViewInfo.HeaderEnglish[i].Key);
+                        else foreach (string name in ViewInfo.HeaderEnglish[i].Value) table_col.Add(name);
+
+                        continue;
+                    }
+
+                    // 移除不用顯示的資訊
+                    if (ViewInfo.HeaderEnglish[i].Value == null)
+                        table.Columns.Remove(ViewInfo.HeaderEnglish[i].Key);
+                    else
+                        foreach (string name in ViewInfo.HeaderEnglish[i].Value) table.Columns.Remove(name);
+                }
+
+                ViewInfo.OP.Set_Data(header, table, table_col);
+                ViewInfo.OP.Set_Data(header, table, table_col); // 標頭對齊需要，目前還沒找到原因
             }
             catch (Exception ex) 
             {
@@ -529,39 +559,6 @@ namespace MoldDetails
             }
 
             return null;
-        }
-
-        private void List_In_DataGridView(DataTable table)
-        {
-            table.Columns.Remove("img1");
-            table.Columns.Remove("img2");
-
-            List<KeyValuePair<string, string[]>> header = new List<KeyValuePair<string, string[]>>(); //中文標頭資訊
-            List<string> table_col = new List<string>(); //將 table columns 進行排序用
-
-            for (int i = 0; i < CheckBoxes.Length; i++)
-            {
-                if (CheckBoxes[i].Checked)
-                {
-                    // 加入中文標頭
-                    header.Add(ViewInfo.HeaderChinese[i]);
-
-                    // 加入對應參數 table 的標頭名稱，用來排序。
-                    if (ViewInfo.HeaderEnglish[i].Value == null) table_col.Add(ViewInfo.HeaderEnglish[i].Key);
-                    else foreach (string name in ViewInfo.HeaderEnglish[i].Value) table_col.Add(name);
-
-                    continue;
-                }
-
-                // 移除不用顯示的資訊
-                if (ViewInfo.HeaderEnglish[i].Value == null)
-                    table.Columns.Remove(ViewInfo.HeaderEnglish[i].Key);
-                else
-                    foreach (string name in ViewInfo.HeaderEnglish[i].Value) table.Columns.Remove(name);
-            }
-
-            ViewInfo.OP.Set_Data(header, table, table_col);
-            ViewInfo.OP.Set_Data(header, table, table_col); // 標頭對齊需要，目前還沒找到原因
         }
 
         private void Clear_AllTextBoxValue()
@@ -642,12 +639,17 @@ namespace MoldDetails
             return folder_dialog.SelectedPath + "\\";
         }
 
-        public static void Log_Error(Exception ex)
+        private static string Get_File(string title, string filter)
         {
-            using (StreamWriter writer = new StreamWriter(ERR_LOG_FILE_PATH))
+            OpenFileDialog dialog = new OpenFileDialog
             {
-                writer.WriteLine($"{DateTime.Now}: {ex}");
-            }
+                Title = title,
+                Filter = filter
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK && dialog.FileName.Length == 0) return "";
+            
+            return dialog.FileName;
         }
 
         public static string[] Get_ColName(TextBox[] boxes)
@@ -675,6 +677,19 @@ namespace MoldDetails
             foreach (PictureBox box in boxes) img_list.Add((box.Image == null)? null : ImageToBinary(box.Image));
 
             return img_list;
+        }
+
+        public static void Log_Error(Exception ex)
+        {
+            AppendLine(ERR_LOG_FILE_PATH, $"{DateTime.Now}: {ex}");
+        }
+
+        public static void AppendLine(string path, string line)
+        {
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine(line);
+            }
         }
 
         public static bool Check_RequiredInput(Control control)
