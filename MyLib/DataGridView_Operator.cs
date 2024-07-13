@@ -73,7 +73,7 @@ namespace MyLib
             Cancel_SortMode();
         }
 
-        public void Sort_Column(List<string> col)
+        private void Sort_Column(List<string> col)
         {
             // 調整 DataGridView 的資料顯示順序
             for(int i = 0; i < col.Count; i++) this.view.Columns[col[i]].DisplayIndex = i;
