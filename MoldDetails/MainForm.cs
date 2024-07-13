@@ -57,6 +57,8 @@ namespace MoldDetails
         {
             InitializeComponent();
 
+            AdjustFormSize();
+
             InitializeDataGridView();
 
             InitializeDatabase();
@@ -169,10 +171,10 @@ namespace MoldDetails
 
         private void InitializeDatabase()
         {
-            // 資料庫檔案位置
-            string file_path = "";
+            string file_path = ""; // 資料庫檔案位置
 
             FileInfo file_info = new FileInfo(DataBase_FILE_PATH);
+            // 例外處理：無資料庫使用紀錄（第一次開啟程式）
             if (file_info.Length == 0)
             {
                 file_path = Get_File("請選擇要使用的資料庫檔案", "|*.accdb");
@@ -189,6 +191,7 @@ namespace MoldDetails
             {
                 file_path = File.ReadLines(DataBase_FILE_PATH).First();
 
+                // 例外處理：檔案不存在
                 if (!File.Exists(file_path))
                 {
                     DatabaseForm form = new DatabaseForm();
@@ -223,6 +226,7 @@ namespace MoldDetails
 
         private void add_button_Click(object sender, EventArgs e)
         {
+            // 開啟新增資料視窗，並且仍然可以使用主視窗。
             try 
             {
                 if (AddForm == null || AddForm.IsDisposed)
