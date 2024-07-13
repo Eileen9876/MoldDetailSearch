@@ -1,4 +1,4 @@
-# 「模具明細查詢」程式功能介紹
+# 程式功能介紹
 
 ![image](https://github.com/Eileen9876/MoldDetailSearch/assets/104195959/f78c557a-c09e-48bb-9d7e-4b5560d6e808)
 
