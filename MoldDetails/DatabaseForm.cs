@@ -101,6 +101,9 @@ namespace MoldDetails
             }
         }
 
+        /// <summary>
+        /// 設定當前要使用的資料庫，假如檔案不存在，跳出訊息框。
+        /// </summary>
         private void setup_button_Click(object sender, EventArgs e)
         {
             if (listView.SelectedItems.Count <= 0) return;
@@ -111,8 +114,12 @@ namespace MoldDetails
             else MsgBox.Show(this, "檔案不存在", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// 儲存設定值。不進行資料庫連線動作。
+        /// </summary>
         private void ok_button_Click(object sender, EventArgs e)
         {
+            // 將當前設定值重新寫入 DatabaseFilePath.txt
             using (StreamWriter writer = new StreamWriter(FilePath))
             {
                 writer.WriteLine(usedFile_textBox.Text);
@@ -120,6 +127,7 @@ namespace MoldDetails
                 foreach (ListViewItem item in listView.Items) writer.WriteLine(item.SubItems[1].Text);
             }
 
+            // 設置當前要使用的資料庫檔案
             Db_FilePath = usedFile_textBox.Text;
 
             this.Close();

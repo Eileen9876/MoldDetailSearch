@@ -171,52 +171,59 @@ namespace MoldDetails
 
         private void InitializeDatabase()
         {
-            string file_path = ""; // 資料庫檔案位置
+            string path = "";
 
-            FileInfo file_info = new FileInfo(DataBase_FILE_PATH);
             // 例外處理：無資料庫使用紀錄（第一次開啟程式）
+            FileInfo file_info = new FileInfo(DataBase_FILE_PATH);
             if (file_info.Length == 0)
             {
-                file_path = Get_File("請選擇要使用的資料庫檔案", "|*.accdb");
+                path = Get_File("請選擇要使用的資料庫檔案", "|*.accdb");
 
-                if (file_path == "")
+                if (path == "")
                 {
                     this.Dispose();
                     return;
                 }
 
-                AppendLine(DataBase_FILE_PATH, file_path + "\r\n\r\n" + file_path);
+                // 寫入記錄檔
+                AppendLine(DataBase_FILE_PATH, path + "\r\n\r\n" + path);
+
+                // 資料庫初始化並連線
+                DbHandler = new DBHandler();
+                DbOperator.ConnectDB(DbHandler, path);
+
+                return;
             }
-            else
+
+            // 讀取紀錄，假如檔案存在則連線。
+            path = File.ReadLines(DataBase_FILE_PATH).First();
+            if (File.Exists(path))
             {
-                file_path = File.ReadLines(DataBase_FILE_PATH).First();
-
-                // 例外處理：檔案不存在
-                if (!File.Exists(file_path))
-                {
-                    DatabaseForm form = new DatabaseForm();
-                    try
-                    {
-                        form.ShowDialog(this);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log_Error(ex);
-
-                        MsgBox.ShowErr(this, "更換成功", ex);
-                    }
-                    finally
-                    {
-                        MsgBox.Show(this, "更換成功");
-
-                        form.Dispose();
-                    }
-                }
+                DbHandler = new DBHandler();
+                DbOperator.ConnectDB(DbHandler, path);
+                return;
             }
 
-            // 資料庫初始化並連線
-            DbHandler = new DBHandler();
-            DbOperator.ConnectDB(DbHandler, file_path);
+            // 例外處理：檔案不存在
+            DatabaseForm form = new DatabaseForm();
+            try
+            {
+                form.ShowDialog(this);
+
+                DbHandler = new DBHandler();
+                DbOperator.ConnectDB(DbHandler, form.Db_FilePath);
+
+                MsgBox.Show(this, "資料庫更換成功");
+
+                form.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Log_Error(ex);
+                MsgBox.ShowErr(this, "資料庫更換失敗，程式即將退出。", ex);
+                form.Dispose();
+                this.Dispose();
+            }
         }
 
         private void AdjustFormSize()
