@@ -103,7 +103,6 @@ namespace MoldDetails
             this.img1_chooseBtn = new System.Windows.Forms.Label();
             this.img1_clearBtn = new System.Windows.Forms.Label();
             this.add_button = new System.Windows.Forms.Button();
-            this.clear_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.img1_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img2_pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -851,7 +850,7 @@ namespace MoldDetails
             // add_button
             // 
             this.add_button.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.add_button.Location = new System.Drawing.Point(989, 18);
+            this.add_button.Location = new System.Drawing.Point(1143, 18);
             this.add_button.Name = "add_button";
             this.add_button.Size = new System.Drawing.Size(133, 125);
             this.add_button.TabIndex = 83;
@@ -859,24 +858,12 @@ namespace MoldDetails
             this.add_button.UseVisualStyleBackColor = true;
             this.add_button.Click += new System.EventHandler(this.add_button_Click);
             // 
-            // clear_button
-            // 
-            this.clear_button.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.clear_button.Location = new System.Drawing.Point(1143, 18);
-            this.clear_button.Name = "clear_button";
-            this.clear_button.Size = new System.Drawing.Size(133, 125);
-            this.clear_button.TabIndex = 85;
-            this.clear_button.Text = "清空畫面資料";
-            this.clear_button.UseVisualStyleBackColor = true;
-            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
-            // 
             // MoldInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1296, 794);
-            this.Controls.Add(this.clear_button);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.img2_clearBtn);
             this.Controls.Add(this.img1_clearBtn);
@@ -1038,7 +1025,6 @@ namespace MoldDetails
         private System.Windows.Forms.Label img1_chooseBtn;
         private System.Windows.Forms.Label img1_clearBtn;
         private System.Windows.Forms.Button add_button;
-        private System.Windows.Forms.Button clear_button;
     }
 }
 

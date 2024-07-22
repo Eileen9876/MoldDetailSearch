@@ -80,7 +80,17 @@ namespace MoldDetails
                                    MainForm.Get_ImageBinaryValue(PictureBoxes));
             });
 
-            ResultMsgShow_And_ErrLog("執行成功", "執行失敗", track.GetException);
+
+            if (track.GetException == null) 
+            {
+                ClearInputData();
+                MsgBox.Show(this, "執行成功");
+            }
+            else
+            {
+                MainForm.Log_Error(track.GetException);
+                MsgBox.ShowErr(this, "執行失敗", track.GetException);
+            }
         }
 
         private void clear_button_Click(object sender, EventArgs e)
@@ -125,14 +135,10 @@ namespace MoldDetails
             img2_pictureBox.Image = null;
         }
 
-        private void ResultMsgShow_And_ErrLog(string success_msg, string error_msg, Exception ex)
+        private void ClearInputData()
         {
-            if (ex == null && success_msg.Length > 0) MsgBox.Show(this, success_msg);
-            else
-            {
-                MainForm.Log_Error(ex);
-                MsgBox.ShowErr(this, error_msg, ex);
-            }
+            foreach (TextBox box in TextBoxes) box.Text = "";
+            foreach (PictureBox box in PictureBoxes) box.Image = null;
         }
     }
 }
