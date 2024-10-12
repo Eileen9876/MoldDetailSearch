@@ -66,11 +66,12 @@ namespace MoldDetails
             AdjustFormSize();
 
             Excel_Columns = new string[] {
-                "moldId", "itemId", "itemName",
+                "moldId", "itemId", "rawMaterial", "itemName", "moldingTime",
                 "corId", "corNum", "corComp",
                 "cavId", "cavNum", "cavComp",
                 "texPitch", "texMaxDia", "texMinDia",
-                "orgPrice", "fivePrice", "tenPrice", "thirtyPrice",
+                "texPitch2", "texMaxDia2", "texMinDia2",
+                "orgPrice", "fivePrice", "tenPrice", "thirtyPrice", "fiftyPrice",
                 "machine", "toGW", "toNW", "toCavNum", "toSprue",
                 "quotNW", "quotSprue", "quotGW",
                 "clientNW", "clientSprue", "clientGW", "clientCons",
@@ -78,11 +79,12 @@ namespace MoldDetails
             };
 
             TextBoxes = new TextBox[]{
-                moldId_textBox, itemId_textBox, itemName_textBox,
+                moldId_textBox, itemId_textBox, rawMaterial_textBox, itemName_textBox, moldingTime_textBox,
                 corId_textBox, corNum_textBox, corComp_textBox,
                 cavId_textBox, cavNum_textBox, cavComp_textBox,
                 texPitch_textBox, texMaxDia_textBox, texMinDia_textBox,
-                orgPrice_textBox, fivePrice_textBox, tenPrice_textBox, thirtyPrice_textBox,
+                texPitch2_textBox, texMaxDia2_textBox, texMinDia2_textBox,
+                orgPrice_textBox, fivePrice_textBox, tenPrice_textBox, thirtyPrice_textBox, fiftyPrice_textBox,
                 machine_textBox, toGW_textBox, toNW_textBox, toCavNum_textBox, toSprue_textBox,
                 quotNW_textBox, quotSprue_textBox, quotGW_textBox,
                 clientNW_textBox, clientSprue_textBox, clientGW_textBox, clientCons_textBox,

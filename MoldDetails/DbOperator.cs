@@ -11,16 +11,17 @@ namespace MoldDetails
         private static readonly string Primary_Column = "itemId";
 
         private static readonly string[] Columns = {
-                "moldId", "itemId", "itemName",
+                "moldId", "itemId", "rawMaterial", "itemName", "moldingTime",
                 "corId", "corNum", "corComp",
                 "cavId", "cavNum", "cavComp",
                 "texPitch", "texMaxDia", "texMinDia",
-                "orgPrice", "fivePrice", "tenPrice", "thirtyPrice",
+                "texPitch2", "texMaxDia2", "texMinDia2",
+                "orgPrice", "fivePrice", "tenPrice", "thirtyPrice", "fiftyPrice",
                 "machine", "toGW", "toNW", "toCavNum", "toSprue",
                 "quotNW", "quotSprue", "quotGW",
                 "clientNW", "clientSprue", "clientGW", "clientCons",
                 "notes", "img1", "img2"
-        };
+        };     
 
         private static readonly string[] ALL_COL = new string[] { "*" };
 
