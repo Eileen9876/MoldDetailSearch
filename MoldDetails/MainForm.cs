@@ -63,8 +63,6 @@ namespace MoldDetails
 
             InitializeDatabase();
 
-            AdjustFormSize();
-
             Excel_Columns = new string[] {
                 "moldId", "itemId", "rawMaterial", "itemName", "moldingTime",
                 "corId", "corNum", "corComp",
@@ -95,10 +93,13 @@ namespace MoldDetails
             {
                 moldId_checkBox,
                 itemId_checkBox,
+                rawMaterial_checkBox,
                 itemName_checkBox,
+                moldingTime_checkBox,
                 core_checkBox,
                 cavity_checkBox,
                 textureSize_checkBox,
+                textureSize2_checkBox,
                 unPrice_checkBox,
                 tryoutWT_checkBox,
                 quoteWT_checkBox,
@@ -142,11 +143,14 @@ namespace MoldDetails
             {
                 new KeyValuePair<string, string[]>("模具編號", null),
                 new KeyValuePair<string, string[]>("貨品編號", null),
-                new KeyValuePair<string, string[]>("對銷編號", null),
+                new KeyValuePair<string, string[]>("原料", null),
+                new KeyValuePair<string, string[]>("配對料號", null),
+                new KeyValuePair<string, string[]>("成型時間", null),
                 new KeyValuePair<string, string[]>("公模仁", new string[] { "編號", "模仁", "配件" }),
                 new KeyValuePair<string, string[]>("母模仁", new string[] { "編號", "模仁", "配件" }),
-                new KeyValuePair<string, string[]>("咬牙", new string[] { "螺距", "大徑", "小徑" }),
-                new KeyValuePair<string, string[]>("單價", new string[] { "原價", "5K", "10K", "30K" }),
+                new KeyValuePair<string, string[]>("外咬牙", new string[] { "螺距", "大徑", "小徑" }),
+                new KeyValuePair<string, string[]>("內咬牙", new string[] { "螺距", "大徑", "小徑" }),
+                new KeyValuePair<string, string[]>("單價", new string[] { "原價", "5K", "10K", "30K", "50K" }),
                 new KeyValuePair<string, string[]>("試模重量", new string[] { "機台", "總毛重", "單淨重", "穴數", "總料頭" }),
                 new KeyValuePair<string, string[]>("報價重量", new string[] { "淨重", "料頭", "毛重" }),
                 new KeyValuePair<string, string[]>("報客戶重量", new string[] { "淨重", "料頭", "毛重", "消耗量" }),
@@ -157,11 +161,14 @@ namespace MoldDetails
             {
                 new KeyValuePair<string, string[]>("moldId", null),
                 new KeyValuePair<string, string[]>("itemId", null),
+                new KeyValuePair<string, string[]>("rawMaterial", null),
                 new KeyValuePair<string, string[]>("itemName", null),
+                new KeyValuePair<string, string[]>("moldingTime", null),
                 new KeyValuePair<string, string[]>("core", new string[] { "corId", "corNum", "corComp" }),
                 new KeyValuePair<string, string[]>("cavity", new string[] { "cavId", "cavNum", "cavComp" }),
                 new KeyValuePair<string, string[]>("textureSize", new string[] { "texPitch", "texMaxDia", "texMinDia" }),
-                new KeyValuePair<string, string[]>("unPrice", new string[] { "orgPrice", "fivePrice", "tenPrice", "thirtyPrice" }),
+                new KeyValuePair<string, string[]>("textureSize2", new string[] { "texPitch2", "texMaxDia2", "texMinDia2" }),
+                new KeyValuePair<string, string[]>("unPrice", new string[] { "orgPrice", "fivePrice", "tenPrice", "thirtyPrice", "fiftyPrice" }),
                 new KeyValuePair<string, string[]>("tryoutWT", new string[] { "machine", "toGW", "toNW", "toCavNum", "toSprue" }),
                 new KeyValuePair<string, string[]>("quoteWT", new string[] { "quotNW", "quotSprue", "quotGW" }),
                 new KeyValuePair<string, string[]>("clientWT", new string[] { "clientNW", "clientSprue", "clientGW", "clientCons" }),
@@ -736,6 +743,21 @@ namespace MoldDetails
             finally { stream.Dispose(); }
 
             return binary;
+        }
+
+        private void notes_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quoteWT_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tryoutWT_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
