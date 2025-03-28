@@ -63,6 +63,12 @@ namespace MyLib
             return new OleDbCommand(query.ToString(), this.sqlConn);
         }
 
+        /// <summary>
+        /// Constructs an SQL SELECT query to retrieve specific columns from two tables, 
+        /// joining them based on a specified condition.
+        /// </summary>
+        /// <param name="selectObject1">An object containing the name of the first table and the columns to be selected.</param>
+        /// <param name="selectObject2">An object containing the name of the second table and the columns to be selected.</param>
         private OleDbCommand Create_Select2TableCommand(SelectObject selectObject1, SelectObject selectObject2, string joinCondition, string selectCondition = "")
         {
             // SELECT table.column1, table.column2, ..., table2.column1, table2.column2, ...
@@ -102,13 +108,15 @@ namespace MyLib
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", col));
 
-            query.Append((param == null) ? "" : ", " + string.Join(", ", param.Columns));
+            query.Append((param == null) ? "" : 
+                ((col == null || col.Length == 0) ? "" : ", ") + string.Join(", ", param.Columns));
 
             query.Append(") VALUES (");
 
             query.Append((col == null || col.Length == 0) ? "" : string.Join(", ", val.Select(v => $"'{v}'")));
 
-            query.Append((param == null) ? "" : ((col == null || col.Length == 0) ? "" : ", ") + string.Join(", ", param.Columns.Select(c => $"@{c}")));
+            query.Append((param == null) ? "" : 
+                ((col == null || col.Length == 0) ? "" : ", ") + string.Join(", ", param.Columns.Select(c => $"@{c}")));
 
             query.Append(");");
 
